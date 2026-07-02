@@ -202,7 +202,7 @@ footer .logo{color:var(--paper)}
   .nav-bar{display:none}.burger{display:flex}
   .util-l,.search,.phone,.only-lg{display:none}
   .navwrap{position:relative;justify-content:space-between}
-  .logo{position:absolute;left:50%;transform:translateX(-50%)}
+  .navwrap .logo{position:absolute;left:50%;transform:translateX(-50%)}
   .util-r{margin-left:0}
   /* compare: sticky label column, no page overflow */
   .cmp .tbl{min-width:0}.compare{min-width:472px}
