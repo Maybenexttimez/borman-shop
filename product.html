@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const buyEl=document.querySelector('.buy');
   if(buyEl){new IntersectionObserver(es=>{const e=es[0];document.getElementById('buybar').classList.toggle('show',!e.isIntersecting&&e.boundingClientRect.top<0)},{threshold:0}).observe(buyEl);}
   revealScan();
+  if(window.applyLang)applyLang(localStorage.getItem('borman_lang')||'ru');
 });
 </script>
 </body>

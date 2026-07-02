@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Каталог BORMAN — техника для красоты">
 <meta property="og:description" content="Стайлеры, утюжки, плойки, увлажнители. Рассрочка Kaspi 0-0-12, гарантия 2 года.">
-<meta property="og:image" content="https://maybenexttimez.github.io/borman-shop/assets/cat-styling.webp">
+<meta property="og:image" content="https://maybenexttimez.github.io/borman-shop/assets/og-cover.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shop.css">
@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{cat=t.dataset.c;history.replaceState(0,'',cat==='all'?'catalog.html':'catalog.html?cat='+cat);apply()});
   document.getElementById('sort').onchange=e=>{sort=e.target.value;apply()};
   apply();
+  if(window.applyLang)applyLang(localStorage.getItem('borman_lang')||'ru');
 });
 </script>
 </body>

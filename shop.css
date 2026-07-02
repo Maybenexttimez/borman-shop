@@ -41,7 +41,7 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:500;line-height:1.06;letter-spac
 .citybtn svg{width:16px;height:16px;color:var(--gold)}
 .citybtn svg:last-child{width:14px;height:14px;color:var(--ink2)}
 .citybtn:hover{color:var(--gold)}
-.city-pop{position:absolute;top:calc(100% + 8px);left:0;background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:0 22px 44px -22px rgba(60,45,20,.45);padding:6px;min-width:158px;z-index:30;opacity:0;visibility:hidden;transform:translateY(-6px);transition:.25s var(--ease)}
+.city-pop{position:absolute;top:calc(100% + 8px);left:0;background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:0 22px 44px -22px rgba(60,45,20,.45);padding:6px;min-width:170px;max-height:300px;overflow-y:auto;z-index:30;opacity:0;visibility:hidden;transform:translateY(-6px);transition:.25s var(--ease)}
 .city-pop.open{opacity:1;visibility:visible;transform:none}
 .city-pop button{display:block;width:100%;text-align:left;background:none;border:0;cursor:pointer;font-family:var(--body);font-size:14px;padding:9px 13px;border-radius:9px;color:var(--ink)}
 .city-pop button:hover{background:var(--soft);color:var(--gold)}
@@ -91,10 +91,11 @@ h1,h2,h3,h4{font-family:var(--disp);font-weight:500;line-height:1.06;letter-spac
 .mm-acc{display:flex;gap:10px;margin-top:14px}
 .mm-acc button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1px solid var(--line);border-radius:12px;background:none;cursor:pointer;font-family:var(--body);font-size:14px;font-weight:500;color:var(--ink)}
 .mm-acc svg{width:18px;height:18px;color:var(--gold)}
-.mm-info{margin-top:20px;color:var(--ink2);font-size:14px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.mm-info{margin-top:20px;color:var(--ink2);font-size:14px;display:flex;flex-direction:column;align-items:flex-start;gap:11px}
 .mm-info .kaspi{margin:0}
+.mm-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .mm-phone{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-weight:600;font-size:15px}
-.mm-phone svg{width:18px;height:18px;color:#25863f}
+.mm-phone svg{width:19px;height:19px;color:var(--gold)}
 .mm-info p{margin:0;line-height:1.45}
 /* cart */
 .cart-ov{position:fixed;inset:0;z-index:95;background:rgba(20,16,10,.42);opacity:0;pointer-events:none;transition:.4s}
@@ -184,7 +185,7 @@ section{padding:clamp(66px,7vw,120px) 0}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .rv{opacity:0;transform:translateY(30px);transition:1s var(--ease)}.rv.in{opacity:1;transform:none}
 /* footer */
-footer{background:var(--char);color:#cfc4b2;padding:72px 0 36px;margin-top:56px}
+footer{background:var(--char);color:#cfc4b2;padding:72px 0 68px;margin-top:56px}
 footer .logo{color:var(--paper)}
 .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px;margin:32px 0}
 .fgrid h4{font-family:var(--body);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);margin-bottom:13px;font-weight:600}
@@ -208,8 +209,9 @@ footer .logo{color:var(--paper)}
 .chat{position:absolute;right:0;bottom:0;width:min(360px,calc(100vw - 32px));height:min(524px,calc(100vh - 120px));background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:0 40px 80px -30px rgba(40,25,0,.5);display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transform:translateY(20px) scale(.96);transform-origin:bottom right;transition:.4s var(--ease)}
 .fabwrap.open .chat{opacity:1;visibility:visible;transform:none}
 .chat-h{display:flex;align-items:center;gap:11px;padding:15px 18px;background:var(--char);color:var(--paper)}
-.chat-h .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(140deg,#dcb466,#b28e4e);display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+.chat-h .av{width:40px;height:40px;border-radius:50%;overflow:hidden;background:linear-gradient(140deg,#dcb466,#b28e4e);display:flex;align-items:center;justify-content:center;color:#fff;flex:none;border:1.5px solid rgba(205,170,110,.5)}
 .chat-h .av svg{width:20px;height:20px}
+.chat-h .av img{width:100%;height:100%;object-fit:cover}
 .chat-h .who b{font-family:var(--disp);font-weight:500;font-size:16px;display:block;line-height:1.15}
 .chat-h .who span{font-size:11.5px;color:#b9ad99;display:flex;align-items:center;gap:5px}
 .chat-h .who span::before{content:"";width:7px;height:7px;border-radius:50%;background:#57c07a}
@@ -235,7 +237,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .divkey::before,.divkey::after{content:"";height:1px;width:min(90px,16vw);background:linear-gradient(90deg,transparent,var(--gold-s))}
 .divkey::after{background:linear-gradient(90deg,var(--gold-s),transparent)}
 .divkey i{font-style:normal;font-size:13px;letter-spacing:.2em}
-.wa-m{display:none;color:#25863f}
+.wa-m{display:none;color:var(--gold)}
 /* sticky buy-bar (product, mobile) */
 .buybar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(251,249,244,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:11px 16px;padding-bottom:calc(11px + env(safe-area-inset-bottom));display:none;align-items:center;gap:12px;transform:translateY(110%);transition:.4s var(--ease);box-shadow:0 -12px 30px -22px rgba(40,25,0,.5)}
 .buybar.show{transform:none}

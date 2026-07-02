@@ -16,7 +16,7 @@ const ICONS = {
   caret: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
   pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>',
   phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 5-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 5 1.5v3a2 2 0 0 1-2 2A17 17 0 0 1 4.5 5 2 2 0 0 1 6.5 3Z"/></svg>',
-  whatsapp: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 1.9a8.1 8.1 0 1 1-4.1 15l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 0 1 12 3.9ZM9.2 8.2c-.2 0-.5 0-.7.4-.2.4-.9.9-.9 2.1s.9 2.4 1 2.6c.2.2 1.8 2.9 4.5 3.9 2.2.8 2.7.7 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.7-.8c-.2-.1-.4-.1-.6.1l-.6.8c-.1.2-.3.2-.5.1-.7-.3-1.4-.6-2.2-1.6-.2-.3 0-.4.1-.6l.4-.5c.1-.2.1-.3 0-.5l-.7-1.7c-.2-.4-.4-.4-.6-.4h-.4Z"/></svg>',
+  whatsapp: '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C8.82 3 3 8.82 3 16c0 2.29.6 4.44 1.65 6.3L3 29l6.86-1.6A12.9 12.9 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3Zm0 2.4c5.85 0 10.6 4.75 10.6 10.6S21.85 26.6 16 26.6c-1.98 0-3.83-.54-5.42-1.48l-.39-.23-4.07.95.97-3.96-.25-.41A10.53 10.53 0 0 1 5.4 16C5.4 10.15 10.15 5.4 16 5.4Zm-4.32 5.2c-.2 0-.53.08-.8.38-.28.3-1.06 1.03-1.06 2.52 0 1.48 1.08 2.92 1.23 3.12.15.2 2.13 3.4 5.27 4.64 2.6 1.03 3.13.83 3.7.78.56-.05 1.82-.74 2.08-1.46.26-.72.26-1.34.18-1.46-.08-.13-.28-.2-.58-.36-.3-.15-1.82-.9-2.1-1-.28-.1-.48-.15-.68.16-.2.3-.78.99-.96 1.19-.18.2-.35.22-.65.08-.3-.15-1.28-.48-2.44-1.51-.9-.8-1.51-1.8-1.69-2.1-.18-.3-.02-.47.13-.62.14-.14.3-.36.46-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.67-.94-2.28-.24-.58-.5-.5-.68-.51h-.58Z"/></svg>',
   user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>',
   heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5c0 5-7 9.5-7 9.5Z"/></svg>',
   up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 6-6 6 6"/></svg>',
@@ -78,39 +78,74 @@ const NAV = [
   ['catalog.html?cat=curling', 'Плойки'],
   ['catalog.html?cat=straighteners', 'Утюжки'],
   ['catalog.html?cat=massage', 'Массажёры'],
+  ['guides.html', 'Гайды'],
+  ['index.html#reviews', 'Отзывы'],
 ];
-const CITIES = ['Алматы', 'Астана', 'Шымкент', 'Караганда', 'Актобе', 'Абай'];
+const CITIES = ['Алматы', 'Астана', 'Шымкент', 'Караганда', 'Актобе', 'Тараз', 'Павлодар', 'Усть-Каменогорск', 'Семей', 'Атырау', 'Костанай', 'Кызылорда', 'Уральск', 'Петропавловск', 'Актау', 'Талдыкорган', 'Кокшетау', 'Туркестан'];
 const WA = '77051751337';
 function openMenu() { document.querySelector('.mmenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeMenu() { document.querySelector('.mmenu').classList.remove('open'); document.body.style.overflow = ''; }
 function toggleCity(e) { e.stopPropagation(); document.querySelectorAll('.city-pop').forEach(p => p.classList.toggle('open')); }
 function pickCity(c) { document.querySelectorAll('.cityname').forEach(el => el.textContent = c); document.querySelectorAll('.city-pop').forEach(p => p.classList.remove('open')); try { localStorage.setItem('borman_city', c); } catch (e) {} }
-function setLang(el, l) { el.parentNode.querySelectorAll('button').forEach(b => b.classList.remove('on')); el.classList.add('on'); toast(l === 'kz' ? 'Қазақ тілі — жақында' : 'Русский язык'); }
+function setLang(el, l) { applyLang(l); }
 document.addEventListener('click', () => document.querySelectorAll('.city-pop.open').forEach(p => p.classList.remove('open')));
 function goTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-/* chat assistant (rule-based, seeded with our info) */
 const WA_LINK = 'https://wa.me/' + WA;
-const CHAT_QUICK = [['Помочь выбрать', 'choose'], ['Доставка', 'delivery'], ['Цены', 'price'], ['Скидки', 'discount'], ['Рассрочка Kaspi', 'kaspi'], ['Гарантия', 'warranty'], ['Возврат', 'return'], ['Оператор', 'operator']];
+/* ---- i18n: RU source in markup, KZ overlay (text-node swap) ---- */
+const I18N_RU = { nav_home: 'Главная', nav_best: 'Бестселлеры', nav_new: 'Новинки', nav_sale: 'Скидки', nav_styling: 'Стайлеры и фены', nav_humid: 'Увлажнители', nav_curl: 'Плойки', nav_straight: 'Утюжки', nav_massage: 'Массажёры', nav_guides: 'Гайды', nav_reviews: 'Отзывы', search_ph: 'Поиск по каталогу…', hero_eyebrow: 'Красота каждый день', hero_h1a: 'Техника, которой', hero_h1b: 'доверяешь', hero_sub: 'Стайлеры, фены, утюжки, увлажнители и массажёры — оригинальная техника для красоты с честными ценами и гарантией.', cta_catalog: 'В каталог', cta_kaspi: 'Рассрочка Kaspi', hero_kline: 'оформление за 1 минуту в Kaspi', badge_installment: 'рассрочка 0-0-12', ben1_t: 'Выгодные цены', ben1_s: 'Прозрачная стоимость без скрытых наценок', ben2_t: 'Настоящие скидки', ben2_s: 'Реальная выгода, а не зачёркнутый ценник', ben3_t: 'Быстрая доставка', ben3_s: 'По всему Казахстану, бережно и в срок', ben4_t: 'Фирменная гарантия', ben4_s: '2 года и официальный сервис после покупки', cat_title: 'Всё для красоты и дома', best_eyebrow: 'Выбор покупателей', best_title: 'Хиты продаж', best_all: 'Весь каталог →', kaspi_eyebrow: 'Оплата', kaspi_title_a: 'Рассрочка', kaspi_title_b: 'без переплат', kaspi_p: 'Забирайте технику сегодня и платите частями до 12 месяцев. Ноль первого взноса, ноль переплаты — только удобство.', step1: '0 ₸ взнос', step2: '0% переплата', step3: 'до 12 месяцев', kaspi_eg: 'напр. утюжок BM Silk 2.0 — 10 000 ₸', kaspi_btn: 'Купить в рассрочку', cap0_h: 'Гладкость в движении', cap0_p: 'Silk-керамика и ионизация — салонный блеск без вреда для волос.', cap1_h: '160°C точности', cap1_p: '6 режимов температуры и защита от перегрева — контроль в каждом движении.', cap1_btn: 'Купить за 10 000 ₸', rev_title: 'Нам доверяют', rev_agg: '340+ отзывов покупателей', cmp_eyebrow: 'Подбор', cmp_title: 'Сравните модели', cmp_tbl_h: 'Топ-стайлеры BORMAN', guides_eyebrow: 'Помощь в выборе', guides_title: 'Гайды: что выбрать', guides_all: 'Все гайды →', brand_eyebrow: 'О BORMAN', brand_title_a: 'Красота', brand_title_b: 'в деталях', brand_p1: 'BORMAN — магазин техники для красоты и ухода в Алматы. Мы собираем только проверенные модели: стайлеры и фены, утюжки, плойки, увлажнители и массажёры.', brand_p2: 'Честные цены, официальная гарантия и быстрая доставка по всему Казахстану — чтобы забота о себе была простой и приятной каждый день.', fact1: 'Моделей в наличии', fact2: 'Фирменной гарантии', fact3: 'Рассрочка Kaspi', ig_title: 'BORMAN в жизни', ig_sub: 'Реальные укладки и распаковки наших покупателей', faq_eyebrow: 'Вопросы и ответы', faq_title: 'Частые вопросы', trust1_t: 'Официальная гарантия', trust1_s: '2 года на всю технику', trust2_t: 'Доставка по Казахстану', trust2_s: 'Бережно и в срок', trust3_t: 'Лёгкий возврат', trust3_s: '14 дней без вопросов', trust4_t: 'Удобная оплата', trust4_s: 'Kaspi · рассрочка 0-0-12', news_eyebrow: 'Клуб BORMAN', news_title: 'Скидка на первый заказ', news_p: 'Подпишитесь и получите персональную скидку на первую покупку и доступ к закрытым предложениям.', news_ph: 'Ваш e-mail', news_btn: 'Получить скидку', footer_about: 'Профессиональная техника для укладки и ухода за волосами. Красота в каждой детали.', footer_pay: 'Оплата: Kaspi · Kaspi Red · рассрочка 0-0-12', f_catalog: 'Каталог', f_buyer: 'Покупателю', f_contacts: 'Контакты', f_delivery: 'Доставка по РК', f_warranty: 'Гарантия 2 года', f_install: 'Рассрочка Kaspi', f_return: 'Возврат 14 дней', add_cart: 'В корзину', cart_title: 'Корзина', cart_total: 'Итого', cart_checkout: 'Оформить заказ', cart_continue: 'Продолжить покупки', chat_name: 'Асель · менеджер BORMAN', chat_status: 'онлайн · отвечаем быстро', fab_label: 'Есть вопрос?', chat_ph: 'Напишите сообщение…', q_choose: 'Помочь выбрать', q_delivery: 'Доставка', q_price: 'Цены', q_discount: 'Скидки', q_kaspi: 'Рассрочка Kaspi', q_warranty: 'Гарантия', q_return: 'Возврат', q_operator: 'Оператор', chat_greeting: 'Здравствуйте! Меня зовут Асель, я менеджер BORMAN 💛 Подскажу по товарам, ценам, скидкам, доставке и рассрочке Kaspi 0-0-12. Что вас интересует?' };
+const I18N_KZ = { nav_home: 'Басты бет', nav_best: 'Бестселлерлер', nav_new: 'Жаңалықтар', nav_sale: 'Жеңілдіктер', nav_styling: 'Стайлерлер мен фендер', nav_humid: 'Ауа ылғалдандырғыштар', nav_curl: 'Бұйралағыштар', nav_straight: 'Түзеткіштер', nav_massage: 'Массаждағыштар', nav_guides: 'Нұсқаулықтар', nav_reviews: 'Пікірлер', search_ph: 'Каталог бойынша іздеу…', hero_eyebrow: 'Күн сайынғы сұлулық', hero_h1a: 'Сенім артуға', hero_h1b: 'болатын техника', hero_sub: 'Стайлерлер, фендер, түзеткіштер, ауа ылғалдандырғыштар мен массаждағыштар — адал бағамен және кепілдікпен ұсынылатын түпнұсқа сұлулық техникасы.', cta_catalog: 'Каталогқа', cta_kaspi: 'Kaspi бөліп төлеу', hero_kline: 'Kaspi-де 1 минутта рәсімдеу', badge_installment: '0-0-12 бөліп төлеу', ben1_t: 'Тиімді бағалар', ben1_s: 'Жасырын үстемесіз ашық құн', ben2_t: 'Нағыз жеңілдіктер', ben2_s: 'Сызылған баға емес, шынайы пайда', ben3_t: 'Жылдам жеткізу', ben3_s: 'Бүкіл Қазақстан бойынша, ұқыпты әрі уақытында', ben4_t: 'Фирмалық кепілдік', ben4_s: '2 жыл және сатып алғаннан кейінгі ресми қызмет', cat_title: 'Сұлулық пен үйге қажеттің бәрі', best_eyebrow: 'Сатып алушылардың таңдауы', best_title: 'Сатылым хиттері', best_all: 'Толық каталог →', kaspi_eyebrow: 'Төлем', kaspi_title_a: 'Артық төлемсіз', kaspi_title_b: 'бөліп төлеу', kaspi_p: 'Техниканы бүгін алып, 12 айға дейін бөліп төлеңіз. Бастапқы жарна жоқ, артық төлем жоқ — тек ыңғайлылық.', step1: '0 ₸ жарна', step2: '0% артық төлем', step3: '12 айға дейін', kaspi_eg: 'мыс. BM Silk 2.0 түзеткіші — 10 000 ₸', kaspi_btn: 'Бөліп төлеп сатып алу', cap0_h: 'Қозғалыстағы тегістік', cap0_p: 'Silk-керамика мен иондау — шашқа зиянсыз салондық жылтырлық.', cap1_h: '160°C дәлдік', cap1_p: '6 температура режимі және қызып кетуден қорғаныс — әр қозғалыста бақылау.', cap1_btn: '10 000 ₸-ге сатып алу', rev_title: 'Бізге сенеді', rev_agg: '340+ сатып алушы пікірі', cmp_eyebrow: 'Таңдау', cmp_title: 'Модельдерді салыстырыңыз', cmp_tbl_h: 'BORMAN үздік стайлерлері', guides_eyebrow: 'Таңдауға көмек', guides_title: 'Нұсқаулықтар: нені таңдау керек', guides_all: 'Барлық нұсқаулықтар →', brand_eyebrow: 'BORMAN туралы', brand_title_a: 'Сұлулық', brand_title_b: 'бөлшектерде', brand_p1: 'BORMAN — Алматыдағы сұлулық пен күтім техникасының дүкені. Біз тек сынақтан өткен модельдерді жинаймыз: стайлерлер мен фендер, түзеткіштер, бұйралағыштар, ауа ылғалдандырғыштар мен массаждағыштар.', brand_p2: 'Адал бағалар, ресми кепілдік және бүкіл Қазақстан бойынша жылдам жеткізу — өзіңізге күтім жасау күн сайын оңай әрі жағымды болуы үшін.', fact1: 'Қолда бар модельдер', fact2: 'Фирмалық кепілдік', fact3: 'Kaspi бөліп төлеу', ig_title: 'BORMAN өмірде', ig_sub: 'Сатып алушыларымыздың нақты укладкалары мен ашылымдары', faq_eyebrow: 'Сұрақтар мен жауаптар', faq_title: 'Жиі қойылатын сұрақтар', trust1_t: 'Ресми кепілдік', trust1_s: 'Барлық техникаға 2 жыл', trust2_t: 'Қазақстан бойынша жеткізу', trust2_s: 'Ұқыпты әрі уақытында', trust3_t: 'Оңай қайтару', trust3_s: '14 күн, артық сұрақсыз', trust4_t: 'Ыңғайлы төлем', trust4_s: 'Kaspi · 0-0-12 бөліп төлеу', news_eyebrow: 'BORMAN клубы', news_title: 'Алғашқы тапсырысқа жеңілдік', news_p: 'Жазылыңыз да, алғашқы сатып алуыңызға жеке жеңілдік пен жабық ұсыныстарға қолжетімділік алыңыз.', news_ph: 'Сіздің e-mail', news_btn: 'Жеңілдік алу', footer_about: 'Шашты сәндеу мен күтімге арналған кәсіби техника. Сұлулық әр бөлшекте.', footer_pay: 'Төлем: Kaspi · Kaspi Red · 0-0-12 бөліп төлеу', f_catalog: 'Каталог', f_buyer: 'Сатып алушыға', f_contacts: 'Байланыс', f_delivery: 'ҚР бойынша жеткізу', f_warranty: '2 жыл кепілдік', f_install: 'Kaspi бөліп төлеу', f_return: '14 күнде қайтару', add_cart: 'Себетке', cart_title: 'Себет', cart_total: 'Барлығы', cart_checkout: 'Тапсырысты рәсімдеу', cart_continue: 'Сатып алуды жалғастыру', chat_name: 'Әсел · BORMAN менеджері', chat_status: 'желіде · жылдам жауап береміз', fab_label: 'Сұрағыңыз бар ма?', chat_ph: 'Хабарлама жазыңыз…', q_choose: 'Таңдауға көмектесу', q_delivery: 'Жеткізу', q_price: 'Бағалар', q_discount: 'Жеңілдіктер', q_kaspi: 'Kaspi бөліп төлеу', q_warranty: 'Кепілдік', q_return: 'Қайтару', q_operator: 'Оператор', chat_greeting: 'Сәлеметсіз бе! Менің атым Әсел, мен BORMAN менеджерімін 💛 Тауарлар, бағалар, жеңілдіктер, жеткізу және Kaspi 0-0-12 бөліп төлеу бойынша кеңес беремін. Сізді не қызықтырады?' };
+let LANG = 'ru'; try { LANG = localStorage.getItem('borman_lang') || 'ru'; } catch (e) {}
+const _ru2kz = {}, _kz2ru = {};
+for (const k in I18N_KZ) { const r = I18N_RU[k], z = I18N_KZ[k]; if (r && z && r !== z) { _ru2kz[r] = z; _kz2ru[z] = r; } }
+function _walk(node, map) {
+  for (let n = node.firstChild; n; n = n.nextSibling) {
+    if (n.nodeType === 3) { const t = n.nodeValue.trim(); if (t && map[t]) n.nodeValue = n.nodeValue.replace(t, map[t]); }
+    else if (n.nodeType === 1 && !/^(SCRIPT|STYLE|TEXTAREA)$/.test(n.tagName)) _walk(n, map);
+  }
+}
+function applyLang(l) {
+  LANG = l; _walk(document.body, l === 'kz' ? _ru2kz : _kz2ru);
+  document.documentElement.lang = l === 'kz' ? 'kk' : 'ru';
+  try { localStorage.setItem('borman_lang', l); } catch (e) {}
+  const ph = (sel, k) => { const el = document.querySelector(sel); if (el) el.placeholder = l === 'kz' ? (I18N_KZ[k] || '') : (I18N_RU[k] || ''); };
+  ph('.search input', 'search_ph'); ph('.chat-input input', 'chat_ph'); ph('.news input', 'news_ph');
+  document.querySelectorAll('.lang').forEach(g => g.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.textContent.trim().toLowerCase() === (l === 'kz' ? 'kz' : 'ru'))));
+}
+window.applyLang = applyLang;
+/* ---- chat assistant (Асель, rule-based, seeded with our info) ---- */
+const CHAT_QUICK = [['q_choose', 'choose'], ['q_delivery', 'delivery'], ['q_price', 'price'], ['q_discount', 'discount'], ['q_kaspi', 'kaspi'], ['q_warranty', 'warranty'], ['q_return', 'return'], ['q_operator', 'operator']];
+function answerFor(key) {
+  const B = window.__BASE__ || '';
+  return ({
+    operator: 'Соединяю с живым менеджером 💛 Напишите нам в WhatsApp — ответим быстро: <a href="' + WA_LINK + '" target="_blank">+7 705 175 1337</a>.',
+    delivery: 'Доставка по Алматы — 1–2 дня, по Казахстану — 2–4 дня. По крупным городам часто бесплатно, точную стоимость назовёт менеджер при заказе. В Алматы есть и самовывоз.',
+    price: 'Цены честные, без скрытых наценок. Например, утюжок BM Silk 2.0 — 10 000 ₸, стайлер 9-в-1 — 59 990 ₸. Всё — в <a href="' + B + 'catalog.html">каталоге</a>.',
+    discount: 'Действуют настоящие скидки на часть моделей + скидка на первый заказ по подписке. И любую технику можно взять в рассрочку Kaspi 0-0-12 без переплат.',
+    kaspi: 'Рассрочка Kaspi 0-0-12: 0 первый взнос, 0 переплата, до 12 месяцев. Оформляется за минуту прямо в приложении Kaspi при оплате.',
+    warranty: 'На всю технику — официальная гарантия 2 года, товар оригинальный с гарантийным талоном. При поломке бесплатно отремонтируем или заменим в нашем сервисе.',
+    return: 'Возврат в течение 14 дней при сохранении вида и упаковки. Деньги вернём тем же способом оплаты — без лишних вопросов.',
+    choose: 'С радостью помогу! Стайлер — универсал (и выпрямляет, и завивает), утюжок — для гладкости, плойка — для локонов, увлажнитель — для дома. Есть <a href="' + B + 'guides.html">гайды «что выбрать»</a> и фильтры в <a href="' + B + 'catalog.html">каталоге</a>.',
+  })[key];
+}
 function chatAnswer(text) {
-  const t = text.toLowerCase(), B = window.__BASE__ || '';
-  const has = (...w) => w.some(x => t.includes(x));
-  if (has('оператор', 'менеджер', 'человек', 'связать', 'позвон', 'звонок', 'напиш')) return 'Соединяю с живым менеджером 💛 Напишите нам в WhatsApp — ответим быстро: <a href="' + WA_LINK + '" target="_blank">+7 705 175 1337</a>.';
-  if (has('достав', 'привез', 'получ', 'срок', 'самовыв', 'курьер')) return 'Доставка по Алматы — 1–2 дня, по Казахстану — 2–4 дня. По крупным городам часто бесплатно, точную стоимость назовёт менеджер при заказе. В Алматы есть и самовывоз.';
-  if (has('цена', 'цены', 'стоит', 'стоимость', 'сколько', 'почём')) return 'Цены честные, без скрытых наценок. Например, утюжок BM Silk 2.0 — 10 000 ₸, стайлер 9-в-1 — 59 990 ₸. Всё — в <a href="' + B + 'catalog.html">каталоге</a>.';
-  if (has('скидк', 'акци', 'дешев', 'выгод', 'промокод', 'распрод')) return 'Действуют настоящие скидки на часть моделей + скидка на первый заказ по подписке. И любую технику можно взять в рассрочку Kaspi 0-0-12 без переплат.';
-  if (has('kaspi', 'каспи', 'рассроч', 'части', 'взнос', '0-0')) return 'Рассрочка Kaspi 0-0-12: 0 первый взнос, 0 переплата, до 12 месяцев. Оформляется за минуту прямо в приложении Kaspi при оплате.';
-  if (has('гаранти', 'сервис', 'сломал', 'ремонт', 'брак', 'оригинал')) return 'На всю технику — официальная гарантия 2 года, товар оригинальный с гарантийным талоном. При поломке бесплатно отремонтируем или заменим в нашем сервисе.';
-  if (has('возврат', 'вернуть', 'обмен', 'не подош')) return 'Возврат в течение 14 дней при сохранении вида и упаковки. Деньги вернём тем же способом оплаты — без лишних вопросов.';
-  if (has('выбрать', 'подобрать', 'посоветуй', 'какой', 'что взять', 'стайлер', 'плойк', 'утюж', 'увлажн', 'массаж', 'фен')) return 'С радостью помогу! Стайлер — универсал (и выпрямляет, и завивает), утюжок — для гладкости, плойка — для локонов, увлажнитель — для дома. Есть <a href="' + B + 'guides.html">гайды «что выбрать»</a> и фильтры в <a href="' + B + 'catalog.html">каталоге</a>.';
-  if (has('привет', 'здравств', 'добр', 'салам', 'ассал')) return 'Здравствуйте! 💛 Чем помочь — товары, цены, скидки, доставка или рассрочка Kaspi?';
+  const t = text.toLowerCase(); const has = (...w) => w.some(x => t.includes(x));
+  if (has('оператор', 'менеджер', 'человек', 'связать', 'позвон', 'звонок')) return answerFor('operator');
+  if (has('достав', 'привез', 'получ', 'срок', 'самовыв', 'курьер', 'жеткіз')) return answerFor('delivery');
+  if (has('цена', 'цены', 'стоит', 'стоимость', 'сколько', 'баға')) return answerFor('price');
+  if (has('скидк', 'акци', 'дешев', 'выгод', 'промокод', 'жеңілд')) return answerFor('discount');
+  if (has('kaspi', 'каспи', 'рассроч', 'части', 'взнос', 'бөліп')) return answerFor('kaspi');
+  if (has('гаранти', 'сервис', 'сломал', 'ремонт', 'брак', 'оригинал', 'кепіл')) return answerFor('warranty');
+  if (has('возврат', 'вернуть', 'обмен', 'қайтар')) return answerFor('return');
+  if (has('выбрать', 'подобрать', 'посоветуй', 'какой', 'стайлер', 'плойк', 'утюж', 'увлажн', 'массаж', 'фен', 'таңда')) return answerFor('choose');
+  if (has('привет', 'здравств', 'салам', 'сәлем')) return LANG === 'kz' ? I18N_KZ.chat_greeting : I18N_RU.chat_greeting;
   return 'Спасибо за вопрос! Подскажу по доставке, ценам, скидкам, рассрочке Kaspi и гарантии — выберите тему ниже. А по деталям лучше всего ответит менеджер в WhatsApp: <a href="' + WA_LINK + '" target="_blank">+7 705 175 1337</a>.';
 }
 function chatPush(cls, html) { const b = document.querySelector('.chat-body'); if (!b) return; const d = document.createElement('div'); d.className = 'msg ' + cls; d.innerHTML = html; b.appendChild(d); b.scrollTop = b.scrollHeight; }
-function chatReply(text) { setTimeout(() => chatPush('bot', chatAnswer(text)), 480); }
-function chatQuick(label) { chatPush('user', label); chatReply(label); }
+function chatReply(text, key) { setTimeout(() => chatPush('bot', key ? answerFor(key) : chatAnswer(text)), 480); }
+function chatQuick(label, key) { chatPush('user', label); chatReply(label, key); }
 function chatSend() { const i = document.querySelector('.chat-input input'); if (!i || !i.value.trim()) return; const v = i.value.trim(); i.value = ''; chatPush('user', v); chatReply(v); }
 let _chatInit = false;
-function openChat() { document.querySelector('.fabwrap').classList.add('open'); if (!_chatInit) { _chatInit = true; chatPush('bot', 'Здравствуйте! 💛 Я ассистент BORMAN. Подскажу по товарам, ценам, скидкам, доставке и рассрочке Kaspi 0-0-12. Что вас интересует?'); } setTimeout(() => document.querySelector('.chat-input input') && document.querySelector('.chat-input input').focus(), 300); }
+function openChat() { document.querySelector('.fabwrap').classList.add('open'); if (!_chatInit) { _chatInit = true; chatPush('bot', LANG === 'kz' ? I18N_KZ.chat_greeting : I18N_RU.chat_greeting); } setTimeout(() => { const i = document.querySelector('.chat-input input'); if (i) i.focus(); }, 300); }
 function closeChat() { document.querySelector('.fabwrap').classList.remove('open'); }
 
 function injectChrome() {
@@ -152,7 +187,7 @@ function injectChrome() {
     <div class="mm-foot">
       <a class="btn gold block" href="${B}catalog.html">Смотреть каталог →</a>
       <div class="mm-acc"><button type="button" onclick="toast('Личный кабинет — скоро')">${ICONS.user}<span>Кабинет</span></button><button type="button" onclick="toast('Избранное — скоро')">${ICONS.heart}<span>Избранное</span></button></div>
-      <div class="mm-info"><span class="kaspi">рассрочка 0-0-12</span><a class="mm-phone" href="https://wa.me/${WA}">${ICONS.whatsapp}+7 705 175 1337</a><p>${city}, Казахстан · доставка по всему Казахстану</p><p>@bormanbrand · Instagram · TikTok</p></div>
+      <div class="mm-info"><div class="mm-row"><span class="kaspi">рассрочка 0-0-12</span><a class="mm-phone" href="https://wa.me/${WA}">${ICONS.whatsapp}+7 705 175 1337</a></div><p>${city}, Казахстан · доставка по всему Казахстану</p><p>@bormanbrand · Instagram · TikTok</p></div>
     </div>
   </div>
   <div class="cart-ov" onclick="closeCart()"></div>
@@ -161,9 +196,9 @@ function injectChrome() {
   <div class="fabwrap">
     <button class="fab" id="fab" onclick="openChat()" aria-label="Чат с ассистентом"><span class="fab-ring"></span>${ICONS.chat}<span class="fab-label">Есть вопрос?</span></button>
     <div class="chat" role="dialog" aria-label="Чат BORMAN">
-      <div class="chat-h"><div class="av">${ICONS.chat}</div><div class="who"><b>Ассистент BORMAN</b><span>онлайн · отвечаем быстро</span></div><button class="cx" onclick="closeChat()" aria-label="Закрыть">×</button></div>
+      <div class="chat-h"><div class="av"><img src="${B}assets/chat-asel.webp" alt="Асель"></div><div class="who"><b>Асель · менеджер BORMAN</b><span>онлайн · отвечаем быстро</span></div><button class="cx" onclick="closeChat()" aria-label="Закрыть">×</button></div>
       <div class="chat-body"></div>
-      <div class="chat-quick">${CHAT_QUICK.map(([l]) => `<button type="button" onclick="chatQuick('${l}')">${l}</button>`).join('')}</div>
+      <div class="chat-quick">${CHAT_QUICK.map(([lk, k]) => `<button type="button" onclick="chatQuick(this.textContent,'${k}')">${I18N_RU[lk]}</button>`).join('')}</div>
       <form class="chat-input" onsubmit="event.preventDefault();chatSend()"><input placeholder="Напишите сообщение…" aria-label="Сообщение"><button type="submit" class="send" aria-label="Отправить">${ICONS.arrow}</button></form>
     </div>
   </div>`;
@@ -177,6 +212,7 @@ function injectChrome() {
   </div><div class="fbot"><span>© 2026 BORMAN. Все права защищены.</span><span>Техника для красоты · доставка по всему Казахстану</span></div></div>`;
   document.body.appendChild(ftr);
   renderCart();
+  applyLang(LANG);
 }
 
 const FLAGCLS = { 'Хит': 'f-hit', 'Премиум': 'f-premium', 'Новинка': 'f-new', 'Выгодно': 'f-deal' };
