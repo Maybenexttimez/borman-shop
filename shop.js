@@ -12,6 +12,16 @@ const ICONS = {
   wallet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 9.5h13.5a2 2 0 0 1 2 2v0"/><circle cx="16.5" cy="12.5" r="1"/></svg>',
   arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></svg>',
   play: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>',
+  home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-6h4v6"/></svg>',
+  caret: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>',
+  phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 5-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 5 1.5v3a2 2 0 0 1-2 2A17 17 0 0 1 4.5 5 2 2 0 0 1 6.5 3Z"/></svg>',
+  whatsapp: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 1.9a8.1 8.1 0 1 1-4.1 15l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 0 1 12 3.9ZM9.2 8.2c-.2 0-.5 0-.7.4-.2.4-.9.9-.9 2.1s.9 2.4 1 2.6c.2.2 1.8 2.9 4.5 3.9 2.2.8 2.7.7 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.7-.8c-.2-.1-.4-.1-.6.1l-.6.8c-.1.2-.3.2-.5.1-.7-.3-1.4-.6-2.2-1.6-.2-.3 0-.4.1-.6l.4-.5c.1-.2.1-.3 0-.5l-.7-1.7c-.2-.4-.4-.4-.6-.4h-.4Z"/></svg>',
+  user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>',
+  heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5c0 5-7 9.5-7 9.5Z"/></svg>',
+  up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 6-6 6 6"/></svg>',
+  chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15.5A2.5 2.5 0 0 1 17.5 18H8l-4 3V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5Z"/><path d="M8.5 10h7M8.5 13.5h4"/></svg>',
+  tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 12.4 11.5 4.5H19v7.5l-7.9 7.9a1.8 1.8 0 0 1-2.6 0l-4.9-4.9a1.8 1.8 0 0 1 0-2.6Z"/><circle cx="15.4" cy="8.6" r="1.2"/><path d="m9.5 14.5 4-4" stroke-width="1.2"/></svg>',
 };
 window.ICONS = ICONS;
 const PRODUCTS = [
@@ -57,20 +67,72 @@ function renderCart() {
   document.querySelector('.cart .kaspi-tot').textContent = 'или Kaspi Red · ' + perMonth(cartTotal()) + ' × 12 месяцев';
 }
 
+const NAV = [
+  ['index.html', 'Главная', 'home'],
+  ['index.html#best', 'Бестселлеры'],
+  ['catalog.html?sort=new', 'Новинки'],
+  ['catalog.html?sale=1', 'Скидки'],
+  ['catalog.html?cat=styling', 'Стайлеры и фены'],
+  ['catalog.html?cat=humidifiers', 'Увлажнители'],
+  ['catalog.html?cat=curling', 'Плойки'],
+  ['catalog.html?cat=straighteners', 'Утюжки'],
+  ['catalog.html?cat=massage', 'Массажёры'],
+];
+const CITIES = ['Алматы', 'Астана', 'Шымкент', 'Караганда', 'Актобе', 'Абай'];
+const WA = '77051751337';
+function openMenu() { document.querySelector('.mmenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeMenu() { document.querySelector('.mmenu').classList.remove('open'); document.body.style.overflow = ''; }
+function toggleCity(e) { e.stopPropagation(); document.querySelectorAll('.city-pop').forEach(p => p.classList.toggle('open')); }
+function pickCity(c) { document.querySelectorAll('.cityname').forEach(el => el.textContent = c); document.querySelectorAll('.city-pop').forEach(p => p.classList.remove('open')); try { localStorage.setItem('borman_city', c); } catch (e) {} }
+function setLang(el, l) { el.parentNode.querySelectorAll('button').forEach(b => b.classList.remove('on')); el.classList.add('on'); toast(l === 'kz' ? 'Қазақ тілі — жақында' : 'Русский язык'); }
+document.addEventListener('click', () => document.querySelectorAll('.city-pop.open').forEach(p => p.classList.remove('open')));
+function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
 function injectChrome() {
   const B = window.__BASE__ || '';
-  const menu = `<a href="${B}catalog.html?cat=styling">Стайлеры</a><a href="${B}catalog.html?cat=straighteners">Утюжки</a><a href="${B}catalog.html?cat=curling">Плойки</a><a href="${B}catalog.html?cat=humidifiers">Увлажнители</a><a href="${B}index.html#brand">О бренде</a>`;
+  let city = 'Алматы'; try { city = localStorage.getItem('borman_city') || 'Алматы'; } catch (e) {}
+  const navRow = NAV.map(([href, label, ic]) => ic
+    ? `<a href="${B}${href}" class="nhome" aria-label="${label}" title="${label}">${ICONS[ic]}</a>`
+    : `<a href="${B}${href}">${label}</a>`).join('');
+  const mNav = NAV.map(([href, label]) => `<a href="${B}${href}">${label}</a>`).join('');
+  const cityPop = `<div class="city-pop">${CITIES.map(c => `<button type="button" onclick="pickCity('${c}')">${c}</button>`).join('')}</div>`;
   const hdr = document.createElement('div');
   hdr.innerHTML = `
-  <header class="hdr" id="hdr"><div class="wrap nav">
-    <button class="burger" onclick="document.querySelector('.mmenu').classList.add('open');document.body.style.overflow='hidden'"><span></span><span></span><span></span></button>
-    <a href="${B}index.html" class="logo">BORMAN</a>
-    <nav class="menu">${menu}</nav>
-    <div class="nav-r"><button class="iconbtn" title="Поиск">${ICONS.search}</button><button class="iconbtn cartbtn" onclick="openCart()" title="Корзина">${ICONS.cart}<span class="cart-count">0</span></button></div>
-  </div></header>
-  <div class="mmenu"><button class="x" onclick="this.parentNode.classList.remove('open');document.body.style.overflow=''">×</button><div class="mm-links">${menu}</div><div class="mm-foot"><a class="btn gold block" href="${B}catalog.html">Смотреть каталог →</a><div class="mm-info"><span class="kaspi">рассрочка 0-0-12</span><p>Алматы, Казахстан · +7 700 000 00 00</p><p>@bormanbrand · Instagram · TikTok</p></div></div></div>
+  <header class="hdr" id="hdr">
+    <div class="nav-top"><div class="wrap navwrap">
+      <button class="burger" onclick="openMenu()" aria-label="Меню"><span></span><span></span><span></span></button>
+      <a href="${B}index.html" class="logo">BORMAN</a>
+      <div class="util util-l">
+        <div class="citywrap"><button class="citybtn" type="button" onclick="toggleCity(event)">${ICONS.pin}<span class="cityname">${city}</span>${ICONS.caret}</button>${cityPop}</div>
+        <div class="lang"><button type="button" class="on" onclick="setLang(this,'ru')">Ru</button><button type="button" onclick="setLang(this,'kz')">Kz</button></div>
+      </div>
+      <form class="search" onsubmit="event.preventDefault();toast('Поиск скоро заработает')"><span class="si">${ICONS.search}</span><input type="search" placeholder="Поиск по каталогу…" aria-label="Поиск"></form>
+      <div class="util util-r">
+        <a class="phone" href="https://wa.me/${WA}" target="_blank" rel="noopener" title="WhatsApp">${ICONS.whatsapp}<b>+7 705 175 1337</b></a>
+        <button class="iconbtn only-lg" type="button" title="Личный кабинет" onclick="toast('Личный кабинет — скоро')">${ICONS.user}</button>
+        <button class="iconbtn only-lg" type="button" title="Избранное" onclick="toast('Избранное — скоро')">${ICONS.heart}</button>
+        <button class="iconbtn cartbtn" onclick="openCart()" title="Корзина" aria-label="Корзина">${ICONS.cart}<span class="cart-count">0</span></button>
+      </div>
+    </div></div>
+    <div class="nav-bar"><div class="wrap"><nav class="menu">${navRow}</nav></div></div>
+  </header>
+  <div class="mmenu">
+    <div class="mm-top"><a href="${B}index.html" class="logo">BORMAN</a><button class="x" onclick="closeMenu()" aria-label="Закрыть">×</button></div>
+    <div class="mm-bar">
+      <div class="citywrap"><button class="citybtn" type="button" onclick="toggleCity(event)">${ICONS.pin}<span class="cityname">${city}</span>${ICONS.caret}</button>${cityPop}</div>
+      <div class="lang"><button type="button" class="on" onclick="setLang(this,'ru')">Ru</button><button type="button" onclick="setLang(this,'kz')">Kz</button></div>
+    </div>
+    <div class="mm-links">${mNav}</div>
+    <div class="mm-foot">
+      <a class="btn gold block" href="${B}catalog.html">Смотреть каталог →</a>
+      <div class="mm-acc"><button type="button" onclick="toast('Личный кабинет — скоро')">${ICONS.user}<span>Кабинет</span></button><button type="button" onclick="toast('Избранное — скоро')">${ICONS.heart}<span>Избранное</span></button></div>
+      <div class="mm-info"><span class="kaspi">рассрочка 0-0-12</span><a class="mm-phone" href="https://wa.me/${WA}">${ICONS.whatsapp}+7 705 175 1337</a><p>${city}, Казахстан · доставка по всему Казахстану</p><p>@bormanbrand · Instagram · TikTok</p></div>
+    </div>
+  </div>
   <div class="cart-ov" onclick="closeCart()"></div>
-  <div class="cart"><div class="ch"><h3>Корзина</h3><button class="icobtn" onclick="closeCart()" style="font-size:24px">×</button></div><div class="items"></div><div class="cf"><div class="tot"><span>Итого</span><span class="v">0 ₸</span></div><div class="kaspi-tot"></div><button class="btn terra block">Оформить заказ</button><button class="btn soft block" style="margin-top:10px" onclick="closeCart()">Продолжить покупки</button></div></div>`;
+  <div class="cart"><div class="ch"><h3>Корзина</h3><button class="icobtn" onclick="closeCart()" style="font-size:24px" aria-label="Закрыть">×</button></div><div class="items"></div><div class="cf"><div class="tot"><span>Итого</span><span class="v">0 ₸</span></div><div class="kaspi-tot"></div><button class="btn kaspibtn block">Оформить заказ</button><button class="btn outline block" style="margin-top:10px" onclick="closeCart()">Продолжить покупки</button></div></div>
+  <button class="totop" id="totop" onclick="scrollTop()" aria-label="Наверх">${ICONS.up}</button>
+  <div class="fabwrap"><button class="fab" id="fab" onclick="toast('Напишите нам — мы на связи 💛')" aria-label="Обратная связь"><span class="fab-ring"></span>${ICONS.chat}<span class="fab-label">Обратная связь</span></button></div>`;
   document.body.prepend(hdr);
   const ftr = document.createElement('footer');
   ftr.innerHTML = `<div class="wrap"><div class="logo">BORMAN</div><div class="fgrid">
@@ -92,8 +154,11 @@ let _io;
 function revealScan() { if (!_io) _io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); _io.unobserve(e.target); } }), { threshold: .12 }); document.querySelectorAll('.rv:not(.in)').forEach(el => _io.observe(el)); }
 window.revealScan = revealScan;
 function initMotion() {
-  const hdr = document.getElementById('hdr');
-  addEventListener('scroll', () => hdr && hdr.classList.toggle('solid', scrollY > 30), { passive: true });
+  const hdr = document.getElementById('hdr'), tt = document.getElementById('totop');
+  addEventListener('scroll', () => {
+    hdr && hdr.classList.toggle('solid', scrollY > 30);
+    tt && tt.classList.toggle('show', scrollY > 520);
+  }, { passive: true });
   revealScan();
 }
 document.addEventListener('DOMContentLoaded', () => { injectChrome(); initMotion(); });
