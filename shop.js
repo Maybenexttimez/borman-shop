@@ -52,7 +52,7 @@ function renderCart() {
   const ids = Object.keys(cart);
   if (!ids.length) { box.innerHTML = '<div class="empty">Корзина пуста.<br><br>Добавьте технику BORMAN 💛</div>'; document.querySelector('.cart .cf').style.display = 'none'; return; }
   document.querySelector('.cart .cf').style.display = 'block';
-  box.innerHTML = ids.map(id => { const p = P(id), q = cart[id]; return `<div class="citem"><img src="${imgUrl(p)}" alt=""><div class="ci"><h4>${p.name}</h4><div>${fmt(p.price)}</div><div class="kaspi-m">Kaspi: ${perMonth(p.price)} ×12</div><div class="qty"><button onclick="setQty(${id},${q - 1})">−</button><span>${q}</span><button onclick="setQty(${id},${q + 1})">+</button><button class="rm" onclick="setQty(${id},0)" style="margin-left:auto">Удалить</button></div></div></div>`; }).join('');
+  box.innerHTML = ids.map(id => { const p = P(id), q = cart[id]; return `<div class="citem"><img src="${imgUrl(p)}" alt=""><div class="ci"><div class="crow"><h4>${p.name}</h4><button class="rm2" onclick="setQty(${id},0)" aria-label="Удалить">×</button></div><div class="cprice">${fmt(p.price)}</div><div class="kaspi-m">Kaspi · ${perMonth(p.price)} ×12</div><div class="qty"><button onclick="setQty(${id},${q - 1})">−</button><span>${q}</span><button onclick="setQty(${id},${q + 1})">+</button></div></div></div>`; }).join('');
   document.querySelector('.cart .tot .v').textContent = fmt(cartTotal());
   document.querySelector('.cart .kaspi-tot').textContent = 'или Kaspi Red · ' + perMonth(cartTotal()) + ' × 12 месяцев';
 }
@@ -68,7 +68,7 @@ function injectChrome() {
     <nav class="menu">${menu}</nav>
     <div class="nav-r"><button class="iconbtn" title="Поиск">${ICONS.search}</button><button class="iconbtn cartbtn" onclick="openCart()" title="Корзина">${ICONS.cart}<span class="cart-count">0</span></button></div>
   </div></header>
-  <div class="mmenu"><button class="x" onclick="this.parentNode.classList.remove('open');document.body.style.overflow=''">×</button>${menu}</div>
+  <div class="mmenu"><button class="x" onclick="this.parentNode.classList.remove('open');document.body.style.overflow=''">×</button><div class="mm-links">${menu}</div><div class="mm-foot"><a class="btn gold block" href="${B}catalog.html">Смотреть каталог →</a><div class="mm-info"><span class="kaspi">рассрочка 0-0-12</span><p>Алматы, Казахстан · +7 700 000 00 00</p><p>@bormanbrand · Instagram · TikTok</p></div></div></div>
   <div class="cart-ov" onclick="closeCart()"></div>
   <div class="cart"><div class="ch"><h3>Корзина</h3><button class="icobtn" onclick="closeCart()" style="font-size:24px">×</button></div><div class="items"></div><div class="cf"><div class="tot"><span>Итого</span><span class="v">0 ₸</span></div><div class="kaspi-tot"></div><button class="btn terra block">Оформить заказ</button><button class="btn soft block" style="margin-top:10px" onclick="closeCart()">Продолжить покупки</button></div></div>`;
   document.body.prepend(hdr);

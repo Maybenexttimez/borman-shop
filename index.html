@@ -43,8 +43,8 @@
   .cmp .quote .who{margin-top:14px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
   /* motion */
   .motion{height:270vh;position:relative;background:#0e0b08}
-  .motion .pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#17130f url('assets/frames/f050.webp') center/cover no-repeat}
-  .motion canvas{position:absolute;inset:0;width:100%;height:100%}
+  .motion .pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#17130f}
+  .motion #mframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .motion .pin::after{content:"";position:absolute;inset:0;background:radial-gradient(130% 90% at 50% 45%,transparent 46%,rgba(14,11,8,.74))}
   .motion .cap{position:absolute;z-index:3;text-align:center;color:var(--paper);padding:24px;transition:.7s var(--ease);opacity:0;transform:translateY(22px)}
   .motion .cap.on{opacity:1;transform:none}
@@ -67,7 +67,11 @@
   .news form{display:flex;gap:10px;max-width:430px;margin:0 auto;flex-wrap:wrap}
   .news input{flex:1;min-width:200px;padding:14px 20px;border-radius:100px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:var(--paper);font-family:var(--body)}
   .news input::placeholder{color:#a99d8a}
-  @media(max-width:900px){.hero{grid-template-columns:1fr}.hero .ht{padding:40px 30px 20px}.hero .hv{margin:0 14px 14px;min-height:260px}.cats{grid-template-columns:1fr 1fr}.kaspi-band{grid-template-columns:1fr;padding:30px}.cmp{grid-template-columns:1fr}.brand{grid-template-columns:1fr;gap:26px}.brand .o1{order:-1}.motion{height:220vh}}
+  .wavemq{background:var(--char);overflow:hidden;line-height:0}
+  .wavemq svg{width:100%;height:clamp(94px,12vw,150px);display:block}
+  .wavemq .wtext{font-family:var(--disp);font-weight:500;font-size:clamp(21px,2.9vw,40px);fill:var(--gold-l);letter-spacing:.03em}
+  @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:0}.hero .ht{padding:clamp(30px,6vw,44px) clamp(22px,5vw,30px) 16px}.hero .hv{margin:0 clamp(12px,3vw,18px) clamp(12px,3vw,18px);aspect-ratio:16/10;min-height:0}.hero .hv video{min-height:0}.cats{grid-template-columns:1fr 1fr}.kaspi-band{grid-template-columns:1fr;padding:30px}.cmp{grid-template-columns:1fr}.cmp .tbl{padding:26px 20px;-webkit-overflow-scrolling:touch}.brand{grid-template-columns:1fr;gap:26px}.brand .o1{order:-1}.motion{height:220vh}}
+  @media(max-width:520px){.cats{grid-template-columns:1fr 1fr;gap:10px}.ctile{aspect-ratio:3/3.3}.ctile .l h3{font-size:19px}.hero h1{font-size:clamp(30px,8vw,42px)}}
 </style>
 </head>
 <body>
@@ -96,10 +100,10 @@
 <section><div class="wrap">
   <div class="sec-head c rv"><div class="eyebrow">Каталог</div><h2>Выберите категорию</h2></div>
   <div class="cats">
-    <a class="ctile rv" href="catalog.html?cat=styling"><img src="assets/cat_styling.webp" alt=""><div class="l"><small>5 моделей</small><h3>Стайлеры</h3></div></a>
-    <a class="ctile rv" style="transition-delay:.07s" href="catalog.html?cat=straighteners"><img src="assets/prod-16.webp" style="object-fit:contain;padding:14px;background:radial-gradient(circle,#fff,#efe6d7)" alt=""><div class="l"><small>Silk-керамика</small><h3>Утюжки</h3></div></a>
-    <a class="ctile rv" style="transition-delay:.14s" href="catalog.html?cat=curling"><img src="assets/cat_curling.webp" alt=""><div class="l"><small>4 модели</small><h3>Плойки</h3></div></a>
-    <a class="ctile rv" style="transition-delay:.21s" href="catalog.html?cat=humidifiers"><img src="assets/life_salon.webp" alt=""><div class="l"><small>Для дома</small><h3>Увлажнители</h3></div></a>
+    <a class="ctile rv" href="catalog.html?cat=styling"><img src="assets/cat-styling.webp" alt=""><div class="l"><small>5 моделей</small><h3>Стайлеры</h3></div></a>
+    <a class="ctile rv" style="transition-delay:.07s" href="catalog.html?cat=straighteners"><img src="assets/cat-straight.webp" alt=""><div class="l"><small>Silk-керамика</small><h3>Утюжки</h3></div></a>
+    <a class="ctile rv" style="transition-delay:.14s" href="catalog.html?cat=curling"><img src="assets/cat-curl.webp" alt=""><div class="l"><small>4 модели</small><h3>Плойки</h3></div></a>
+    <a class="ctile rv" style="transition-delay:.21s" href="catalog.html?cat=humidifiers"><img src="assets/cat-humid.webp" alt=""><div class="l"><small>Для дома</small><h3>Увлажнители</h3></div></a>
   </div>
 </div></section>
 
@@ -132,7 +136,7 @@
 
 <section class="motion" id="motion">
   <div class="pin">
-    <canvas id="mcanvas"></canvas>
+    <img id="mframe" src="assets/frames/f048.webp" alt="BM Silk 2.0">
     <div class="cap" id="mc0"><div class="eyebrow">BM Silk 2.0</div><h2>Гладкость<br>в движении</h2><p>Silk-керамика и ионизация — салонный блеск без вреда для волос.</p></div>
     <div class="cap" id="mc1"><h2 style="color:var(--gold-l)">160°C точности</h2><p>6 режимов температуры и защита от перегрева — контроль в каждом движении.</p><a href="product.html?id=16" class="btn gold">Купить за 10 000 ₸</a></div>
   </div>
@@ -142,6 +146,8 @@
   <img class="rv o1" src="assets/life_editorial.webp" alt="BORMAN">
   <div><div class="eyebrow rv">О бренде</div><h2 class="rv" style="transition-delay:.06s">Техника,<br>что любит волосы</h2><p class="rv" style="transition-delay:.1s">BORMAN — профессиональные технологии ухода: керамика, турмалин и ионизация в каждом устройстве. Салонный результат доступен каждый день.</p><div class="facts rv" style="transition-delay:.16s"><div><b>12+</b><small>Моделей</small></div><div><b>2 года</b><small>Гарантия</small></div><div><b>4.9</b><small>Рейтинг Kaspi</small></div></div></div>
 </div></div></section>
+
+<section class="wavemq" aria-hidden="true"><svg viewBox="0 0 1440 150" preserveAspectRatio="xMidYMid slice"><defs><path id="wpath" d="M-120,92 C160,22 380,158 720,92 C1060,22 1280,158 1560,92"/></defs><text class="wtext"><textPath href="#wpath" startOffset="0">BORMAN — КРАСОТА В КАЖДОЙ ДЕТАЛИ — РАССРОЧКА KASPI 0-0-12 — ИОНИЗАЦИЯ — КЕРАМИКА — ГАРАНТИЯ 2 ГОДА — BORMAN — КРАСОТА В КАЖДОЙ ДЕТАЛИ — РАССРОЧКА KASPI 0-0-12 — ИОНИЗАЦИЯ — КЕРАМИКА — ГАРАНТИЯ 2 ГОДА — <animate attributeName="startOffset" from="0" to="-770" dur="28s" repeatCount="indefinite"/></textPath></text></svg></section>
 
 <section style="padding-top:0"><div class="wrap"><div class="trust rv">
   <div class="t"><div class="ic" data-ic="medal"></div><div><b>Официальная гарантия</b><small>2 года на всю технику</small></div></div>
@@ -161,19 +167,18 @@
 document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('[data-ic]').forEach(e=>{e.innerHTML=(window.ICONS||{})[e.dataset.ic]||''});
   renderGrid('#best-grid',[13,9,16,19,18,7,15,11].map(id=>PRODUCTS.find(p=>p.id===id)).filter(Boolean));
-  const N=96,frames=[];let cur=0,target=0,loaded=0,ready=false;
-  const cv=document.getElementById('mcanvas'),cx=cv.getContext('2d');
+  const N=96,frames=[];let cur=0,target=0,lastIdx=-1;
+  const mf=document.getElementById('mframe');
   const pad=n=>String(n).padStart(3,'0');
-  function size(){const d=Math.min(devicePixelRatio||1,2);cv.width=cv.clientWidth*d;cv.height=cv.clientHeight*d;cx.setTransform(d,0,0,d,0,0);draw()}
-  function cover(img){const w=cv.clientWidth,h=cv.clientHeight,r=Math.max(w/img.width,h/img.height),iw=img.width*r,ih=img.height*r;cx.clearRect(0,0,w,h);cx.drawImage(img,(w-iw)/2,(h-ih)/2,iw,ih)}
-  function draw(){const im=frames[Math.round(cur)];if(im&&im.complete)cover(im)}
-  function preload(){for(let i=1;i<=N;i++){const im=new Image();im.onload=()=>{loaded++;if(loaded>=N){ready=true;size()}};im.src='assets/frames/f'+pad(i)+'.webp';frames[i-1]=im}}
-  new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){preload();o.disconnect()}},{rootMargin:'1500px'}).observe(document.getElementById('motion'));
-  addEventListener('resize',size);
+  function preload(){for(let i=1;i<=N;i++){const im=new Image();im.src='assets/frames/f'+pad(i)+'.webp';frames[i-1]=im}}
+  new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){preload();o.disconnect()}},{rootMargin:'1600px'}).observe(document.getElementById('motion'));
   const caps=[document.getElementById('mc0'),document.getElementById('mc1')];
   function onScroll(){const s=document.getElementById('motion'),r=s.getBoundingClientRect(),tot=s.offsetHeight-innerHeight;let p=Math.min(1,Math.max(0,-r.top/tot));target=p*(N-1);caps[0].classList.toggle('on',p<0.5);caps[1].classList.toggle('on',p>=0.5)}
   addEventListener('scroll',onScroll,{passive:true});onScroll();
-  (function loop(){cur+=(target-cur)*0.1;draw();requestAnimationFrame(loop)})();
+  (function loop(){cur+=(target-cur)*0.12;const idx=Math.max(0,Math.min(N-1,Math.round(cur)));if(idx!==lastIdx&&frames[idx]&&frames[idx].complete){mf.src=frames[idx].src;lastIdx=idx}requestAnimationFrame(loop)})();
+  // subtle parallax on hero video
+  const hvv=document.querySelector('.hero .hv video');
+  if(hvv){hvv.style.transform='scale(1.07)';addEventListener('scroll',()=>{const y=Math.min(scrollY,700);hvv.style.transform='translateY('+(y*0.05)+'px) scale(1.07)'},{passive:true});}
 });
 </script>
 </body>
