@@ -9,7 +9,12 @@
 <meta name="theme-color" content="#211f1b">
 <meta property="og:type" content="product">
 <meta property="og:title" content="BORMAN">
-<meta property="og:image" content="https://maybenexttimez.github.io/borman-shop/assets/cat-styling.webp">
+<meta property="og:image" content="https://maybenexttimez.github.io/borman-shop/assets/og-cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maybenexttimez.github.io/borman-shop/assets/og-cover.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shop.css">
@@ -75,7 +80,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   const IMGABS='https://maybenexttimez.github.io/borman-shop/assets/'+p.img+'.webp';
   const md=document.querySelector('meta[name=description]'); if(md) md.content=p.name+' — '+p.feat+'. Цена '+fmt(p.price)+', рассрочка Kaspi 0-0-12, гарантия 2 года. Доставка по Казахстану.';
   document.querySelector('meta[property="og:title"]')?.setAttribute('content',p.name+' — BORMAN');
-  document.querySelector('meta[property="og:image"]')?.setAttribute('content',IMGABS);
   const ld=document.createElement('script');ld.type='application/ld+json';
   ld.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Product",name:p.name,image:IMGABS,description:p.name+' — '+p.feat,brand:{"@type":"Brand",name:"BORMAN"},category:CATS[p.cat],offers:{"@type":"Offer",price:p.price,priceCurrency:"KZT",availability:"https://schema.org/InStock",url:location.href}});
   document.head.appendChild(ld);
