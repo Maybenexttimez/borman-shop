@@ -125,4 +125,5 @@ footer .logo{color:var(--paper)}
   .grid{grid-template-columns:1fr 1fr;gap:12px}section{padding:60px 0}
   .marquee span{font-size:17px}.fgrid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:480px){.grid{grid-template-columns:1fr 1fr;gap:10px}.feat-row{grid-template-columns:1fr 1fr}.trust{grid-template-columns:1fr}.pcard .pi{padding:13px}.pcard h3{font-size:13.5px}.pcard .price{font-size:19px}}
+@media(max-width:480px){.grid{grid-template-columns:1fr 1fr;gap:10px}.feat-row{grid-template-columns:1fr 1fr}.trust{grid-template-columns:1fr}.pcard .pi{padding:13px}.pcard h3{font-size:13.5px}.pcard .price{font-size:19px}
+  .logo{font-size:20px;letter-spacing:.14em}.nav{gap:8px}.nav-r{gap:10px}.icobtn{font-size:13px}}
