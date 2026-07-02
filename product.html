@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Товар — BORMAN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shop.css">
+<style>
+  .pp{padding:120px 0 40px}
+  .crumb{font-size:13px;color:var(--ink2);margin-bottom:26px}.crumb a:hover{color:var(--gold)}
+  .pgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start}
+  .gal .main{aspect-ratio:1;background:radial-gradient(circle at 50% 42%,#fff,#efe7d7);border:1px solid var(--line);border-radius:24px;display:flex;align-items:center;justify-content:center;padding:40px;overflow:hidden}
+  .gal .main img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+  .gal .thumbs{display:flex;gap:12px;margin-top:14px}
+  .gal .thumbs .t{width:78px;height:78px;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;background:var(--paper);padding:8px;transition:.3s}
+  .gal .thumbs .t.on,.gal .thumbs .t:hover{border-color:var(--gold)}
+  .gal .thumbs .t img{width:100%;height:100%;object-fit:contain}
+  .pinfo .cat{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .pinfo h1{font-size:clamp(30px,4vw,46px);margin:8px 0 12px}
+  .pinfo .feat{color:var(--ink2);font-size:17px}
+  .pinfo .price{font-family:var(--disp);font-size:40px;font-weight:600;margin:20px 0 4px}
+  /* kaspi installment */
+  .kbox{background:#fdeceb;border:1px solid #f7cfcb;border-radius:16px;padding:18px 20px;margin:18px 0}
+  .kbox .kh{display:flex;justify-content:space-between;align-items:center}
+  .kbox .kh b{color:var(--kaspi);font-weight:700}
+  .ktabs{display:flex;gap:8px;margin:12px 0}
+  .ktab{flex:1;padding:9px;border-radius:100px;border:1px solid #f2c4bf;background:#fff;color:var(--kaspi);font-weight:600;font-size:13px;cursor:pointer;text-align:center;transition:.25s;font-family:var(--body)}
+  .ktab.on{background:var(--kaspi);color:#fff;border-color:var(--kaspi)}
+  .kbox .perm{font-family:var(--disp);font-size:26px;color:var(--kaspi)}
+  .buy{display:flex;gap:12px;margin-top:22px;align-items:stretch}
+  .qtybox{display:flex;align-items:center;border:1px solid var(--line);border-radius:100px;overflow:hidden}
+  .qtybox button{width:44px;height:52px;border:0;background:var(--paper);font-size:20px;cursor:pointer}
+  .qtybox span{width:40px;text-align:center;font-weight:600}
+  .buy .btn{flex:1}
+  .pmini{display:flex;gap:22px;margin-top:24px;flex-wrap:wrap;color:var(--ink2);font-size:13.5px}
+  .pmini span{display:flex;align-items:center;gap:8px}.pmini i{color:var(--gold);font-style:normal;font-size:16px}
+  .pdetail{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:70px}
+  .specs-t{width:100%;border-collapse:collapse}
+  .specs-t td{padding:12px 4px;border-bottom:1px solid var(--line);font-size:15px}
+  .specs-t td:first-child{color:var(--ink2)}.specs-t td:last-child{text-align:right;font-weight:600}
+  .pdetail h3{font-size:26px;margin-bottom:16px}
+  .pdetail .desc p{color:var(--ink2);margin-bottom:12px}
+  @media(max-width:900px){.pgrid{grid-template-columns:1fr;gap:28px}.pdetail{grid-template-columns:1fr;gap:30px}.pp{padding:100px 0 30px}}
+</style>
+</head>
+<body>
+<script>window.__BASE__='';</script>
+<div class="pp"><div class="wrap">
+  <div class="crumb" id="crumb"></div>
+  <div class="pgrid" id="pgrid"></div>
+  <div class="pdetail" id="pdetail"></div>
+</div></div>
+<section style="background:var(--paper)"><div class="wrap">
+  <div class="sec-head rv"><div class="eyebrow">Вам понравится</div><h2>Похожие товары</h2></div>
+  <div class="grid" id="rel-grid"></div>
+</div></section>
+
+<script src="shop.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const id=+(new URLSearchParams(location.search).get('id')||16);
+  const p=PRODUCTS.find(x=>x.id===id)||PRODUCTS[0];
+  document.title=p.name+' — BORMAN';
+  document.getElementById('crumb').innerHTML=`<a href="index.html">Главная</a> / <a href="catalog.html?cat=${p.cat}">${CATS[p.cat]}</a> / ${p.name}`;
+  const thumbs=[`assets/${p.img}.webp`,'assets/life_hands.webp','assets/life_editorial.webp'];
+  document.getElementById('pgrid').innerHTML=`
+   <div class="gal rv">
+     <div class="main"><img id="mainimg" src="assets/${p.img}.webp" alt="${p.name}"></div>
+     <div class="thumbs">${thumbs.map((t,i)=>`<div class="t ${i?'':'on'}" onclick="document.getElementById('mainimg').src='${t}';document.querySelectorAll('.gal .t').forEach(e=>e.classList.remove('on'));this.classList.add('on')"><img src="${t}" alt=""></div>`).join('')}</div>
+   </div>
+   <div class="pinfo rv" style="transition-delay:.06s">
+     ${p.tag?`<span class="kaspi" style="margin-bottom:10px">${p.tag}</span>`:''}
+     <div class="cat">${CATS[p.cat]}</div>
+     <h1>${p.name}</h1>
+     <p class="feat">${p.feat}</p>
+     <div class="price">${fmt(p.price)}</div>
+     <div style="color:var(--gold);font-weight:600;font-size:14px">✓ В наличии · доставка по Казахстану</div>
+     <div class="kbox">
+       <div class="kh"><b>Kaspi рассрочка 0-0</b><span style="font-size:12px;color:var(--kaspi)">без переплаты</span></div>
+       <div class="ktabs" id="ktabs">
+         <div class="ktab" data-m="3">3 мес</div><div class="ktab" data-m="6">6 мес</div><div class="ktab on" data-m="12">12 мес</div>
+       </div>
+       <div>от <span class="perm" id="perm">${perMonth(p.price,12)}</span></div>
+     </div>
+     <div class="buy">
+       <div class="qtybox"><button onclick="chgq(-1)">−</button><span id="q">1</span><button onclick="chgq(1)">+</button></div>
+       <button class="btn fill" onclick="addToCart(${p.id},+document.getElementById('q').textContent)">Добавить в корзину</button>
+     </div>
+     <button class="btn gold block" style="margin-top:10px;background:var(--kaspi)" onclick="addToCart(${p.id},+document.getElementById('q').textContent)">Купить в рассрочку Kaspi</button>
+     <div class="pmini"><span><i>◆</i> Гарантия 2 года</span><span><i>⇄</i> Быстрая доставка</span><span><i>↺</i> Возврат 14 дней</span></div>
+   </div>`;
+  // qty + kaspi tabs
+  window.chgq=d=>{const el=document.getElementById('q');el.textContent=Math.max(1,+el.textContent+d)};
+  document.querySelectorAll('.ktab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.ktab').forEach(x=>x.classList.remove('on'));t.classList.add('on');document.getElementById('perm').textContent=perMonth(p.price,+t.dataset.m)});
+  // detail
+  document.getElementById('pdetail').innerHTML=`
+   <div class="rv"><h3>Характеристики</h3><table class="specs-t">${p.specs.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td></tr>`).join('')}</table></div>
+   <div class="desc rv" style="transition-delay:.06s"><h3>Описание</h3><p>${p.name} — ${p.feat.toLowerCase()}. Профессиональный уход и стойкий результат при бережном отношении к волосам.</p><p>Керамическое покрытие с ионизацией разглаживает волос и придаёт зеркальный блеск, а продуманное управление делает укладку быстрой и безопасной.</p><p>Официальная гарантия BORMAN 2 года. Оплата картой или в рассрочку Kaspi 0-0-12 без переплаты.</p></div>`;
+  // related
+  const rel=PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==p.id).concat(PRODUCTS.filter(x=>x.cat!==p.cat)).slice(0,4);
+  renderGrid('#rel-grid',rel);
+  revealScan();
+});
+</script>
+</body>
+</html>

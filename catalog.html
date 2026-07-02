@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каталог — BORMAN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shop.css">
+<style>
+  .chead{padding:130px 0 30px;text-align:center}
+  .chead h1{font-size:clamp(40px,6vw,72px)}
+  .chead p{color:var(--ink2);margin-top:10px}
+  .bar{position:sticky;top:64px;z-index:40;background:rgba(244,236,224,.9);backdrop-filter:blur(12px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:36px}
+  .bar .in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;flex-wrap:wrap}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap}
+  .tab{padding:9px 18px;border-radius:100px;border:1px solid var(--line);background:var(--paper);font-weight:600;font-size:14px;cursor:pointer;transition:.3s;color:var(--ink2);font-family:var(--body)}
+  .tab:hover{border-color:var(--terra);color:var(--terra)}
+  .tab.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .sort{padding:9px 16px;border-radius:100px;border:1px solid var(--line);background:var(--paper);font-weight:500;font-family:var(--body);color:var(--ink);cursor:pointer}
+  .count{color:var(--ink2);font-size:14px}
+  @media(max-width:820px){.bar{top:56px}.bar .in{gap:10px}.chead{padding-top:110px}}
+</style>
+</head>
+<body>
+<script>window.__BASE__='';</script>
+<div class="chead"><div class="wrap"><div class="eyebrow rv">Магазин BORMAN</div><h1 class="rv" style="transition-delay:.06s" id="ctitle">Весь каталог</h1><p class="rv" style="transition-delay:.1s">Профессиональная техника для укладки и ухода · рассрочка Kaspi 0-0-12</p></div></div>
+<div class="bar"><div class="wrap in">
+  <div class="tabs" id="tabs">
+    <button class="tab" data-c="all">Все</button>
+    <button class="tab" data-c="styling">Стайлеры</button>
+    <button class="tab" data-c="straighteners">Утюжки</button>
+    <button class="tab" data-c="curling">Плойки</button>
+    <button class="tab" data-c="humidifiers">Увлажнители</button>
+  </div>
+  <div style="display:flex;gap:14px;align-items:center"><span class="count" id="count"></span>
+  <select class="sort" id="sort"><option value="pop">Популярные</option><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option></select></div>
+</div></div>
+<div class="wrap" style="padding-bottom:40px"><div class="grid" id="cat-grid"></div></div>
+
+<script src="shop.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const q=new URLSearchParams(location.search);
+  let cat=q.get('cat')||'all', sort='pop';
+  const titles={all:'Весь каталог',styling:'Стайлеры',straighteners:'Утюжки',curling:'Плойки',humidifiers:'Увлажнители'};
+  const order=[13,9,16,19,18,7,8,17,11,10,15,14]; // popularity
+  function apply(){
+    document.getElementById('ctitle').textContent=titles[cat];
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.c===cat));
+    let list=PRODUCTS.filter(p=>cat==='all'||p.cat===cat);
+    if(sort==='asc')list=[...list].sort((a,b)=>a.price-b.price);
+    else if(sort==='desc')list=[...list].sort((a,b)=>b.price-a.price);
+    else list=[...list].sort((a,b)=>order.indexOf(a.id)-order.indexOf(b.id));
+    renderGrid('#cat-grid',list);
+    document.getElementById('count').textContent=list.length+' товаров';
+  }
+  document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{cat=t.dataset.c;history.replaceState(0,'',cat==='all'?'catalog.html':'catalog.html?cat='+cat);apply()});
+  document.getElementById('sort').onchange=e=>{sort=e.target.value;apply()};
+  apply();
+});
+</script>
+</body>
+</html>
