@@ -138,9 +138,9 @@ function injectChrome() {
   ftr.innerHTML = `<div class="wrap"><div class="logo">BORMAN</div><div class="fgrid">
     <div><p style="max-width:280px;margin-top:12px">Профессиональная техника для укладки и ухода за волосами. Красота в каждой детали.</p><p style="margin-top:10px">Оплата: Kaspi · Kaspi Red · рассрочка 0-0-12</p></div>
     <div><h4>Каталог</h4><a href="${B}catalog.html?cat=styling">Стайлеры</a><a href="${B}catalog.html?cat=straighteners">Утюжки</a><a href="${B}catalog.html?cat=curling">Плойки</a><a href="${B}catalog.html?cat=humidifiers">Увлажнители</a></div>
-    <div><h4>Покупателю</h4><a href="#">Доставка</a><a href="#">Гарантия</a><a href="#">Kaspi рассрочка</a><a href="#">Возврат</a></div>
-    <div><h4>Контакты</h4><a href="#">Алматы, Казахстан</a><a href="#">+7 700 000 00 00</a><a href="#">@bormanbrand</a></div>
-  </div><div class="fbot"><span>© 2026 BORMAN. Все права защищены.</span><span>Концепт-магазин · дизайн-прототип</span></div></div>`;
+    <div><h4>Покупателю</h4><a href="${B}catalog.html">Доставка по РК</a><a href="${B}catalog.html">Гарантия 2 года</a><a href="${B}index.html#kaspi">Рассрочка Kaspi</a><a href="${B}catalog.html">Возврат 14 дней</a></div>
+    <div><h4>Контакты</h4><a>Алматы, Казахстан</a><a href="https://wa.me/${WA}" target="_blank" rel="noopener">WhatsApp · +7 705 175 1337</a><a href="tel:+77051751337">+7 705 175 1337</a><a href="https://instagram.com/bormanbrand" target="_blank" rel="noopener">@bormanbrand</a></div>
+  </div><div class="fbot"><span>© 2026 BORMAN. Все права защищены.</span><span>Техника для красоты · доставка по всему Казахстану</span></div></div>`;
   document.body.appendChild(ftr);
   renderCart();
 }

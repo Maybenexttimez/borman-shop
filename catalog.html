@@ -40,6 +40,7 @@
     <button class="tab" data-c="straighteners">Утюжки</button>
     <button class="tab" data-c="curling">Плойки</button>
     <button class="tab" data-c="humidifiers">Увлажнители</button>
+    <button class="tab" data-c="massage">Массажёры</button>
   </div>
   <div style="display:flex;gap:14px;align-items:center"><span class="count" id="count"></span>
   <select class="sort" id="sort"><option value="pop">Популярные</option><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option></select></div>
@@ -51,15 +52,21 @@
 document.addEventListener('DOMContentLoaded',()=>{
   const q=new URLSearchParams(location.search);
   let cat=q.get('cat')||'all', sort='pop';
-  const titles={all:'Весь каталог',styling:'Стайлеры',straighteners:'Утюжки',curling:'Плойки',humidifiers:'Увлажнители'};
+  const titles={all:'Весь каталог',styling:'Стайлеры',straighteners:'Утюжки',curling:'Плойки',humidifiers:'Увлажнители',massage:'Массажёры'};
   const order=[13,9,16,19,18,7,8,17,11,10,15,14]; // popularity
   function apply(){
-    document.getElementById('ctitle').textContent=titles[cat];
+    document.getElementById('ctitle').textContent=titles[cat]||'Весь каталог';
     document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.c===cat));
     let list=PRODUCTS.filter(p=>cat==='all'||p.cat===cat);
     if(sort==='asc')list=[...list].sort((a,b)=>a.price-b.price);
     else if(sort==='desc')list=[...list].sort((a,b)=>b.price-a.price);
     else list=[...list].sort((a,b)=>order.indexOf(a.id)-order.indexOf(b.id));
+    const grid=document.getElementById('cat-grid');
+    if(!list.length){
+      grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--ink2)"><div class="eyebrow" style="justify-content:center">'+(titles[cat]||'Категория')+'</div><h3 style="font-size:26px;margin:10px 0 8px">Скоро в продаже</h3><p>Новые модели уже в пути. Загляните в <a href="catalog.html" style="color:var(--gold);font-weight:600">весь каталог</a>.</p></div>';
+      document.getElementById('count').textContent='скоро';
+      return;
+    }
     renderGrid('#cat-grid',list);
     document.getElementById('count').textContent=list.length+' товаров';
   }
