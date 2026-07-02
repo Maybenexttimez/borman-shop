@@ -1,5 +1,19 @@
 /* BORMAN shop engine — products, Kaspi installment, cart, chrome, motion */
 const CATS = { styling: 'Стайлеры', straighteners: 'Утюжки', curling: 'Плойки', humidifiers: 'Увлажнители' };
+const ICONS = {
+  search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>',
+  cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h13l-1.2 9.3a2 2 0 0 1-2 1.7H9.2a2 2 0 0 1-2-1.7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>',
+  spark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"><path d="M12 2c.7 5.2 1.6 7.6 8 8.2-6.4.6-7.3 3-8 8.2-.7-5.2-1.6-7.6-8-8.2 6.4-.6 7.3-3 8-8.2Z"/></svg>',
+  shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3 7.6-7 9.1-4-1.5-7-4.5-7-9.1V6l7-3Z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg>',
+  bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/></svg>',
+  medal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-2 7.5 5.5-3.2 5.5 3.2-2-7.5"/></svg>',
+  truck: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h11v10H2zM13 9.5h4.2l3.8 3v4H13z"/><circle cx="6.8" cy="18.2" r="1.7"/><circle cx="17.6" cy="18.2" r="1.7"/></svg>',
+  refresh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-2.5-6"/><path d="M20.5 3.5V9H15"/></svg>',
+  wallet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 9.5h13.5a2 2 0 0 1 2 2v0"/><circle cx="16.5" cy="12.5" r="1"/></svg>',
+  arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></svg>',
+  play: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>',
+};
+window.ICONS = ICONS;
 const PRODUCTS = [
   { id: 13, name: 'Стайлер BORMAN BM931 9-в-1', cat: 'styling', price: 59990, img: 'prod-13', tag: 'Хит', feat: '9 насадок + ионизация', specs: [['Насадки', '9 в 1'], ['Ионизация', 'да'], ['Мощность', '1400 Вт'], ['Режимы t°', '3'], ['Обдув', '2 скорости'], ['Кабель', '2.5 м, вращение']] },
   { id: 9, name: 'Стайлер BORMAN 7uper Spin Pro', cat: 'styling', price: 79990, img: 'prod-9', tag: 'Премиум', feat: 'Автоматическая закрутка', specs: [['Технология', 'Spin / автозакрутка'], ['Ионизация', 'да'], ['Мощность', '1300 Вт'], ['Насадки', 'мультистайлинг'], ['Дисплей', 'LED'], ['Кабель', '2.5 м']] },
@@ -52,7 +66,7 @@ function injectChrome() {
     <button class="burger" onclick="document.querySelector('.mmenu').classList.add('open');document.body.style.overflow='hidden'"><span></span><span></span><span></span></button>
     <a href="${B}index.html" class="logo">BORMAN</a>
     <nav class="menu">${menu}</nav>
-    <div class="nav-r"><span class="lnk icobtn">Поиск</span><button class="icobtn" onclick="openCart()">Корзина <span class="cart-count">0</span></button></div>
+    <div class="nav-r"><button class="iconbtn" title="Поиск">${ICONS.search}</button><button class="iconbtn cartbtn" onclick="openCart()" title="Корзина">${ICONS.cart}<span class="cart-count">0</span></button></div>
   </div></header>
   <div class="mmenu"><button class="x" onclick="this.parentNode.classList.remove('open');document.body.style.overflow=''">×</button>${menu}</div>
   <div class="cart-ov" onclick="closeCart()"></div>

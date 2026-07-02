@@ -35,7 +35,7 @@
   .qtybox span{width:40px;text-align:center;font-weight:600}
   .buy .btn{flex:1}
   .pmini{display:flex;gap:22px;margin-top:24px;flex-wrap:wrap;color:var(--ink2);font-size:13.5px}
-  .pmini span{display:flex;align-items:center;gap:8px}.pmini i{color:var(--gold);font-style:normal;font-size:16px}
+  .pmini span{display:flex;align-items:center;gap:8px}.pmini svg{width:19px;height:19px;color:var(--gold)}
   .pdetail{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:70px}
   .specs-t{width:100%;border-collapse:collapse}
   .specs-t td{padding:12px 4px;border-bottom:1px solid var(--line);font-size:15px}
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded',()=>{
        <button class="btn fill" onclick="addToCart(${p.id},+document.getElementById('q').textContent)">Добавить в корзину</button>
      </div>
      <button class="btn gold block" style="margin-top:10px;background:var(--kaspi)" onclick="addToCart(${p.id},+document.getElementById('q').textContent)">Купить в рассрочку Kaspi</button>
-     <div class="pmini"><span><i>◆</i> Гарантия 2 года</span><span><i>⇄</i> Быстрая доставка</span><span><i>↺</i> Возврат 14 дней</span></div>
+     <div class="pmini"><span>${ICONS.medal} Гарантия 2 года</span><span>${ICONS.truck} Быстрая доставка</span><span>${ICONS.refresh} Возврат 14 дней</span></div>
    </div>`;
   // qty + kaspi tabs
   window.chgq=d=>{const el=document.getElementById('q');el.textContent=Math.max(1,+el.textContent+d)};
