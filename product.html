@@ -17,12 +17,12 @@
   .pp{padding:120px 0 40px}
   .crumb{font-size:13px;color:var(--ink2);margin-bottom:26px}.crumb a:hover{color:var(--gold)}
   .pgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start}
-  .gal .main{aspect-ratio:1;background:radial-gradient(circle at 50% 42%,#fff,#efe7d7);border:1px solid var(--line);border-radius:24px;display:flex;align-items:center;justify-content:center;padding:40px;overflow:hidden}
-  .gal .main img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+  .gal .main{aspect-ratio:1;background:linear-gradient(160deg,#faf4e8,#efe6d3);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+  .gal .main img{width:100%;height:100%;object-fit:cover}
   .gal .thumbs{display:flex;gap:12px;margin-top:14px}
-  .gal .thumbs .t{width:78px;height:78px;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;background:var(--paper);padding:8px;transition:.3s}
+  .gal .thumbs .t{width:78px;height:78px;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;background:var(--soft);transition:.3s}
   .gal .thumbs .t.on,.gal .thumbs .t:hover{border-color:var(--gold)}
-  .gal .thumbs .t img{width:100%;height:100%;object-fit:contain}
+  .gal .thumbs .t img{width:100%;height:100%;object-fit:cover}
   .pinfo .cat{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
   .pinfo h1{font-size:clamp(30px,4vw,46px);margin:8px 0 12px}
   .pinfo .feat{color:var(--ink2);font-size:17px}
@@ -48,7 +48,7 @@
   .specs-t td:first-child{color:var(--ink2)}.specs-t td:last-child{text-align:right;font-weight:600}
   .pdetail h3{font-size:26px;margin-bottom:16px}
   .pdetail .desc p{color:var(--ink2);margin-bottom:12px}
-  @media(max-width:900px){.pgrid{grid-template-columns:1fr;gap:28px}.pdetail{grid-template-columns:1fr;gap:30px}.pp{padding:100px 0 30px}}
+  @media(max-width:900px){.pgrid{grid-template-columns:1fr;gap:28px}.pdetail{grid-template-columns:1fr;gap:30px}.pp{padding:100px 0 84px}.buybar{display:flex}}
 </style>
 </head>
 <body>
@@ -62,6 +62,8 @@
   <div class="sec-head rv"><div class="eyebrow">Вам понравится</div><h2>Похожие товары</h2></div>
   <div class="grid" id="rel-grid"></div>
 </div></section>
+
+<div class="buybar" id="buybar"></div>
 
 <script src="shop.js"></script>
 <script>
@@ -115,6 +117,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   // related
   const rel=PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==p.id).concat(PRODUCTS.filter(x=>x.cat!==p.cat)).slice(0,4);
   renderGrid('#rel-grid',rel);
+  // sticky buy-bar (mobile)
+  document.getElementById('buybar').innerHTML=`<div class="bp"><div class="pr">${fmt(p.price)}</div><div class="km">Kaspi · ${perMonth(p.price)} ×12</div></div><button class="btn kaspibtn" onclick="addToCart(${p.id},1)">В корзину</button>`;
+  const buyEl=document.querySelector('.buy');
+  if(buyEl){new IntersectionObserver(es=>{const e=es[0];document.getElementById('buybar').classList.toggle('show',!e.isIntersecting&&e.boundingClientRect.top<0)},{threshold:0}).observe(buyEl);}
   revealScan();
 });
 </script>

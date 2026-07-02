@@ -22,6 +22,7 @@ const ICONS = {
   up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 6-6 6 6"/></svg>',
   chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15.5A2.5 2.5 0 0 1 17.5 18H8l-4 3V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5Z"/><path d="M8.5 10h7M8.5 13.5h4"/></svg>',
   tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 12.4 11.5 4.5H19v7.5l-7.9 7.9a1.8 1.8 0 0 1-2.6 0l-4.9-4.9a1.8 1.8 0 0 1 0-2.6Z"/><circle cx="15.4" cy="8.6" r="1.2"/><path d="m9.5 14.5 4-4" stroke-width="1.2"/></svg>',
+  insta: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>',
 };
 window.ICONS = ICONS;
 const PRODUCTS = [
@@ -86,7 +87,31 @@ function toggleCity(e) { e.stopPropagation(); document.querySelectorAll('.city-p
 function pickCity(c) { document.querySelectorAll('.cityname').forEach(el => el.textContent = c); document.querySelectorAll('.city-pop').forEach(p => p.classList.remove('open')); try { localStorage.setItem('borman_city', c); } catch (e) {} }
 function setLang(el, l) { el.parentNode.querySelectorAll('button').forEach(b => b.classList.remove('on')); el.classList.add('on'); toast(l === 'kz' ? 'Қазақ тілі — жақында' : 'Русский язык'); }
 document.addEventListener('click', () => document.querySelectorAll('.city-pop.open').forEach(p => p.classList.remove('open')));
-function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function goTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+/* chat assistant (rule-based, seeded with our info) */
+const WA_LINK = 'https://wa.me/' + WA;
+const CHAT_QUICK = [['Помочь выбрать', 'choose'], ['Доставка', 'delivery'], ['Цены', 'price'], ['Скидки', 'discount'], ['Рассрочка Kaspi', 'kaspi'], ['Гарантия', 'warranty'], ['Возврат', 'return'], ['Оператор', 'operator']];
+function chatAnswer(text) {
+  const t = text.toLowerCase(), B = window.__BASE__ || '';
+  const has = (...w) => w.some(x => t.includes(x));
+  if (has('оператор', 'менеджер', 'человек', 'связать', 'позвон', 'звонок', 'напиш')) return 'Соединяю с живым менеджером 💛 Напишите нам в WhatsApp — ответим быстро: <a href="' + WA_LINK + '" target="_blank">+7 705 175 1337</a>.';
+  if (has('достав', 'привез', 'получ', 'срок', 'самовыв', 'курьер')) return 'Доставка по Алматы — 1–2 дня, по Казахстану — 2–4 дня. По крупным городам часто бесплатно, точную стоимость назовёт менеджер при заказе. В Алматы есть и самовывоз.';
+  if (has('цена', 'цены', 'стоит', 'стоимость', 'сколько', 'почём')) return 'Цены честные, без скрытых наценок. Например, утюжок BM Silk 2.0 — 10 000 ₸, стайлер 9-в-1 — 59 990 ₸. Всё — в <a href="' + B + 'catalog.html">каталоге</a>.';
+  if (has('скидк', 'акци', 'дешев', 'выгод', 'промокод', 'распрод')) return 'Действуют настоящие скидки на часть моделей + скидка на первый заказ по подписке. И любую технику можно взять в рассрочку Kaspi 0-0-12 без переплат.';
+  if (has('kaspi', 'каспи', 'рассроч', 'части', 'взнос', '0-0')) return 'Рассрочка Kaspi 0-0-12: 0 первый взнос, 0 переплата, до 12 месяцев. Оформляется за минуту прямо в приложении Kaspi при оплате.';
+  if (has('гаранти', 'сервис', 'сломал', 'ремонт', 'брак', 'оригинал')) return 'На всю технику — официальная гарантия 2 года, товар оригинальный с гарантийным талоном. При поломке бесплатно отремонтируем или заменим в нашем сервисе.';
+  if (has('возврат', 'вернуть', 'обмен', 'не подош')) return 'Возврат в течение 14 дней при сохранении вида и упаковки. Деньги вернём тем же способом оплаты — без лишних вопросов.';
+  if (has('выбрать', 'подобрать', 'посоветуй', 'какой', 'что взять', 'стайлер', 'плойк', 'утюж', 'увлажн', 'массаж', 'фен')) return 'С радостью помогу! Стайлер — универсал (и выпрямляет, и завивает), утюжок — для гладкости, плойка — для локонов, увлажнитель — для дома. Есть <a href="' + B + 'guides.html">гайды «что выбрать»</a> и фильтры в <a href="' + B + 'catalog.html">каталоге</a>.';
+  if (has('привет', 'здравств', 'добр', 'салам', 'ассал')) return 'Здравствуйте! 💛 Чем помочь — товары, цены, скидки, доставка или рассрочка Kaspi?';
+  return 'Спасибо за вопрос! Подскажу по доставке, ценам, скидкам, рассрочке Kaspi и гарантии — выберите тему ниже. А по деталям лучше всего ответит менеджер в WhatsApp: <a href="' + WA_LINK + '" target="_blank">+7 705 175 1337</a>.';
+}
+function chatPush(cls, html) { const b = document.querySelector('.chat-body'); if (!b) return; const d = document.createElement('div'); d.className = 'msg ' + cls; d.innerHTML = html; b.appendChild(d); b.scrollTop = b.scrollHeight; }
+function chatReply(text) { setTimeout(() => chatPush('bot', chatAnswer(text)), 480); }
+function chatQuick(label) { chatPush('user', label); chatReply(label); }
+function chatSend() { const i = document.querySelector('.chat-input input'); if (!i || !i.value.trim()) return; const v = i.value.trim(); i.value = ''; chatPush('user', v); chatReply(v); }
+let _chatInit = false;
+function openChat() { document.querySelector('.fabwrap').classList.add('open'); if (!_chatInit) { _chatInit = true; chatPush('bot', 'Здравствуйте! 💛 Я ассистент BORMAN. Подскажу по товарам, ценам, скидкам, доставке и рассрочке Kaspi 0-0-12. Что вас интересует?'); } setTimeout(() => document.querySelector('.chat-input input') && document.querySelector('.chat-input input').focus(), 300); }
+function closeChat() { document.querySelector('.fabwrap').classList.remove('open'); }
 
 function injectChrome() {
   const B = window.__BASE__ || '';
@@ -111,6 +136,7 @@ function injectChrome() {
         <a class="phone" href="https://wa.me/${WA}" target="_blank" rel="noopener" title="WhatsApp">${ICONS.whatsapp}<b>+7 705 175 1337</b></a>
         <button class="iconbtn only-lg" type="button" title="Личный кабинет" onclick="toast('Личный кабинет — скоро')">${ICONS.user}</button>
         <button class="iconbtn only-lg" type="button" title="Избранное" onclick="toast('Избранное — скоро')">${ICONS.heart}</button>
+        <a class="iconbtn wa-m" href="${WA_LINK}" target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp">${ICONS.whatsapp}</a>
         <button class="iconbtn cartbtn" onclick="openCart()" title="Корзина" aria-label="Корзина">${ICONS.cart}<span class="cart-count">0</span></button>
       </div>
     </div></div>
@@ -131,8 +157,16 @@ function injectChrome() {
   </div>
   <div class="cart-ov" onclick="closeCart()"></div>
   <div class="cart"><div class="ch"><h3>Корзина</h3><button class="icobtn" onclick="closeCart()" style="font-size:24px" aria-label="Закрыть">×</button></div><div class="items"></div><div class="cf"><div class="tot"><span>Итого</span><span class="v">0 ₸</span></div><div class="kaspi-tot"></div><button class="btn kaspibtn block">Оформить заказ</button><button class="btn outline block" style="margin-top:10px" onclick="closeCart()">Продолжить покупки</button></div></div>
-  <button class="totop" id="totop" onclick="scrollTop()" aria-label="Наверх">${ICONS.up}</button>
-  <div class="fabwrap"><button class="fab" id="fab" onclick="toast('Напишите нам — мы на связи 💛')" aria-label="Обратная связь"><span class="fab-ring"></span>${ICONS.chat}<span class="fab-label">Обратная связь</span></button></div>`;
+  <button class="totop" id="totop" onclick="goTop()" aria-label="Наверх">${ICONS.up}</button>
+  <div class="fabwrap">
+    <button class="fab" id="fab" onclick="openChat()" aria-label="Чат с ассистентом"><span class="fab-ring"></span>${ICONS.chat}<span class="fab-label">Есть вопрос?</span></button>
+    <div class="chat" role="dialog" aria-label="Чат BORMAN">
+      <div class="chat-h"><div class="av">${ICONS.chat}</div><div class="who"><b>Ассистент BORMAN</b><span>онлайн · отвечаем быстро</span></div><button class="cx" onclick="closeChat()" aria-label="Закрыть">×</button></div>
+      <div class="chat-body"></div>
+      <div class="chat-quick">${CHAT_QUICK.map(([l]) => `<button type="button" onclick="chatQuick('${l}')">${l}</button>`).join('')}</div>
+      <form class="chat-input" onsubmit="event.preventDefault();chatSend()"><input placeholder="Напишите сообщение…" aria-label="Сообщение"><button type="submit" class="send" aria-label="Отправить">${ICONS.arrow}</button></form>
+    </div>
+  </div>`;
   document.body.prepend(hdr);
   const ftr = document.createElement('footer');
   ftr.innerHTML = `<div class="wrap"><div class="logo">BORMAN</div><div class="fgrid">
@@ -145,14 +179,63 @@ function injectChrome() {
   renderCart();
 }
 
+const FLAGCLS = { 'Хит': 'f-hit', 'Премиум': 'f-premium', 'Новинка': 'f-new', 'Выгодно': 'f-deal' };
 function cardHTML(p) {
   const B = window.__BASE__ || '';
-  return `<a class="pcard rv" href="${B}product.html?id=${p.id}">${p.tag ? `<span class="flag">${p.tag}</span>` : ''}<div class="ph"><img src="${imgUrl(p)}" loading="lazy" alt="${p.name}"></div><div class="pi"><span class="cat">${CATS[p.cat]}</span><h3>${p.name}</h3><div class="price">${fmt(p.price)}</div><div class="kaspi-m">Kaspi · ${perMonth(p.price)} ×12</div><div class="add"><button onclick="event.preventDefault();event.stopPropagation();addToCart(${p.id})">В корзину</button></div></div></a>`;
+  return `<a class="pcard rv" href="${B}product.html?id=${p.id}">${p.tag ? `<span class="flag ${FLAGCLS[p.tag] || 'f-hit'}">${p.tag}</span>` : ''}<div class="ph"><img src="${imgUrl(p)}" loading="lazy" alt="${p.name}"></div><div class="pi"><span class="cat">${CATS[p.cat]}</span><h3>${p.name}</h3><div class="price">${fmt(p.price)}</div><div class="kaspi-m">Kaspi · ${perMonth(p.price)} ×12</div><div class="add"><button onclick="event.preventDefault();event.stopPropagation();addToCart(${p.id})">В корзину</button></div></div></a>`;
 }
 function renderGrid(sel, list) { const el = document.querySelector(sel); if (el) { el.innerHTML = list.map(cardHTML).join(''); revealScan(); } }
 let _io;
 function revealScan() { if (!_io) _io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); _io.unobserve(e.target); } }), { threshold: .12 }); document.querySelectorAll('.rv:not(.in)').forEach(el => _io.observe(el)); }
 window.revealScan = revealScan;
+/* ---- reviews / rating / faq / guides ---- */
+const RATING = { score: '4.9', count: '340+' };
+const REVIEWS = [
+  { name: 'Айгерим', city: 'Алматы', rating: 5, text: 'Купила стайлер BM931, боялась, что будет сложно, а разобралась за один вечер. Волосы держат укладку до вечера, и это при том, что у меня они тонкие и обычно раскручиваются к обеду.', product: 'Стайлер BM931 9-в-1', date: 'май 2026' },
+  { name: 'Динара', city: 'Астана', rating: 5, text: 'Оформила рассрочку через Kaspi, реально 0-0-12, никаких скрытых процентов не нашла. Приятно, когда всё как обещали.', product: '', date: 'июнь 2026' },
+  { name: 'Мадина', city: 'Шымкент', rating: 4, text: 'Утюжок Silk 2.0 хороший за свои деньги, волосы после него гладкие. Единственное — шнур хотелось бы подлиннее, но это мелочь.', product: 'Утюжок BM Silk 2.0', date: 'апрель 2026' },
+  { name: 'Ерлан', city: 'Караганда', rating: 5, text: 'Заказывал жене плойку 7uper Spin Pro на день рождения. Доставили за два дня, коробка целая, чек и гарантийник внутри. Жена в восторге, я спокоен.', product: 'Стайлер 7uper Spin Pro', date: 'июнь 2026' },
+  { name: 'Асель', city: 'Актобе', rating: 5, text: 'Взяла мультистайлер HC03, искала бюджетный вариант и не прогадала. Насадок хватает на все случаи.', product: 'Мультистайлер HC03 7-в-1', date: 'март 2026' },
+  { name: 'Гульнара', city: 'Костанай', rating: 5, text: 'Отдельное спасибо за поддержку — писала вечером, а мне ответили сразу и помогли выбрать между двумя стайлерами. Чувствуется, что не бот, а живой человек.', product: '', date: 'май 2026' },
+  { name: 'Жанна', city: 'Павлодар', rating: 4, text: 'Увлажнитель M202B работает тихо, поставила в детской — сын спит спокойно. Бак большой, на всю ночь хватает.', product: 'Увлажнитель M202B', date: 'февраль 2026' },
+  { name: 'Сауле', city: 'Тараз', rating: 5, text: 'Плойка HC02 греется быстро, локоны получаются как из салона. Пользуюсь почти каждый день уже месяц — полёт нормальный.', product: 'Плойка HC02 4-в-1', date: 'июнь 2026' },
+  { name: 'Алина', city: 'Усть-Каменогорск', rating: 5, text: 'Брала портативную плойку WT121, заряжается от USB-C, беру с собой в поездки. Маленькая, а локон делает не хуже большой.', product: 'Плойка WT121', date: 'апрель 2026' },
+  { name: 'Бахыт', city: 'Атырау', rating: 5, text: 'Понравилось, что техника оригинальная и гарантия 2 года. Раньше покупала на рынке — ломалось через полгода и некому пожаловаться. Тут спокойно.', product: '', date: 'май 2026' },
+];
+const FAQ = [
+  { q: 'Как работает рассрочка Kaspi 0-0-12?', a: 'Это рассрочка на 12 месяцев без первоначального взноса, переплаты и процентов — вы платите ровно цену товара, разбитую на 12 равных платежей. Оформляется прямо при оплате через приложение Kaspi за пару минут, одобрение приходит сразу.' },
+  { q: 'Сколько стоит и как долго идёт доставка по Казахстану?', a: 'По Алматы доставляем за 1–2 дня, в другие города — обычно 2–4 дня в зависимости от региона. Стоимость зависит от адреса и суммы заказа, точную цену назовёт менеджер при оформлении. По крупным городам часто действует бесплатная доставка.' },
+  { q: 'Техника оригинальная? Какая гарантия?', a: 'Да, мы продаём только оригинальную технику с официальной гарантией 2 года. В каждой коробке — гарантийный талон и чек. При любой поломке по гарантии ремонт или замена делаются бесплатно в нашем сервисе.' },
+  { q: 'Как оформить возврат в течение 14 дней?', a: 'Если товар не подошёл, вы можете вернуть его в течение 14 дней при сохранении товарного вида, комплектации и упаковки. Напишите нам — согласуем удобный способ возврата и вернём деньги тем же способом, которым вы оплачивали.' },
+  { q: 'Чем отличаются стайлер, плойка и утюжок?', a: 'Утюжок делает волосы гладкими и прямыми, плойка создаёт локоны, а стайлер — универсал: с набором насадок он и выпрямляет, и завивает, и придаёт объём. Нужна одна задача — берите утюжок или плойку, хочется всё в одном — стайлер.' },
+  { q: 'Не вредно ли это для волос?', a: 'Приборы делают с керамическим или турмалиновым покрытием и ионизацией: керамика греет равномерно, а ионизация снимает статику и сохраняет влагу. Главное — не работать на максимуме без нужды и использовать термозащиту. При аккуратном обращении вред минимален.' },
+  { q: 'Как ухаживать за прибором?', a: 'Давайте пластинам полностью остыть, затем протирайте их мягкой слегка влажной тканью без абразивов и спирта. Не наматывайте шнур туго вокруг корпуса. Раз в пару недель очищайте покрытие от остатков стайлинговых средств.' },
+  { q: 'Какие есть способы оплаты?', a: 'Картой онлайн, наличными или картой при получении, а также рассрочка Kaspi 0-0-12 на 12 месяцев без переплаты. Для юридических лиц возможна оплата по счёту.' },
+  { q: 'Есть ли самовывоз в Алматы?', a: 'Да, в Алматы можно забрать заказ самостоятельно — напишите нам перед приездом, мы подготовим товар и подскажем адрес пункта выдачи. Это бесплатно и обычно быстрее курьера, а при самовывозе вы сразу проверите прибор и комплектацию.' },
+  { q: 'Что делать, если техника сломалась?', a: 'На всю технику действует гарантия 2 года. Напишите нам — примем прибор в официальный сервис, проведём диагностику и бесплатно отремонтируем или заменим по гарантии. После окончания гарантии поможем с платным ремонтом и оригинальными запчастями.' },
+];
+const GUIDES = [
+  { slug: 'stayler-ployka-ili-utyuzhok', title: 'Стайлер, плойка или утюжок — что выбрать', excerpt: 'Разбираемся, какой прибор реально нужен именно вам, чтобы не переплачивать за лишние функции.', readmin: 4, intro: 'Три прибора выглядят похоже, но решают разные задачи. Понять разницу — значит купить один раз и то, что нужно, а не собирать полку из ненужной техники.', sections: [{ h: 'Утюжок — для гладкости и прямых волос', body: 'Его задача — выпрямлять. Пластины скользят по пряди и делают волосы гладкими, послушными и блестящими. Утюжок вроде BM Silk 2.0 подойдёт, если вы почти всегда носите прямые волосы и хотите одну понятную функцию.' }, { h: 'Плойка — для локонов и кудрей', body: 'Плойка создаёт завиток: чем меньше диаметр, тем мельче и упругее локон. Есть автоматические модели вроде HC02, которые сами затягивают прядь. Берите плойку, если завивка для вас — основной образ.' }, { h: 'Стайлер — универсал «всё в одном»', body: 'Стайлер с насадками умеет и выпрямлять, и завивать, и добавлять объём. Модели вроде BM931 9-в-1 или 7uper Spin Pro с автозакруткой заменяют несколько приборов. Выбор для тех, кто любит менять образы.' }, { h: 'Как решить за минуту', body: 'Задайте себе вопрос: как вы носите волосы чаще всего? Всегда прямые — утюжок, всегда кудри — плойка, по-разному — стайлер. Бюджет тоже подскажет: узкая задача стоит дешевле универсала.' }], tip: 'Не покупайте 9-в-1, если реально пользуетесь одной функцией — специализированный прибор в своей задаче обычно удобнее.' },
+  { slug: 'kak-vybrat-stayler-pod-tip-volos', title: 'Как выбрать стайлер под свой тип волос', excerpt: 'Один стайлер по-разному ведёт себя на тонких и на густых волосах — рассказываем, на что смотреть.', readmin: 5, intro: 'Стайлер подбирают не только по количеству насадок, но и под свои волосы. От типа волос зависят нужная температура, мощность и покрытие.', sections: [{ h: 'Тонкие и повреждённые волосы', body: 'Важна точная регулировка температуры и работа на 150–170 °C. Ищите керамику и ионизацию — они бережнее к ослабленному волосу. Модели с несколькими режимами позволяют не «жарить» волосы зря.' }, { h: 'Нормальные волосы средней густоты', body: 'Самый неприхотливый случай — подойдёт почти любой стайлер. Можно смело брать универсал 7-в-1 или 9-в-1. Ориентируйтесь на удобство хвата и скорость нагрева.' }, { h: 'Густые и вьющиеся волосы', body: 'Нужна мощность и запас по температуре до 200 °C. Обратите внимание на широкие пластины и модели с автозакруткой, например 7uper Spin Pro — они экономят время на большом объёме.' }, { h: 'Длина тоже важна', body: 'Для коротких волос удобнее компактные приборы, для длинных — большой диаметр и вместительная рабочая зона. Портативные модели хороши в дорогу, но для густой копны берите полноразмерный стайлер.' }], tip: 'Начинайте с самой низкой температуры, которая держит укладку, — так волосы дольше останутся здоровыми.' },
+  { slug: 'utyuzhok-bez-vreda', title: 'Утюжок без вреда: керамика, турмалин, ионизация', excerpt: 'Что на самом деле означают слова на коробке и как выбрать утюжок, который не испортит волосы.', readmin: 4, intro: 'Покрытие пластин и технологии нагрева напрямую влияют на здоровье волос. Разберём, что стоит за терминами, чтобы вы не переплачивали за маркетинг.', sections: [{ h: 'Керамика — равномерный нагрев', body: 'Керамика прогревается ровно, без локальных перегревов, из-за которых волос «горит», и мягко скользит. Это база, с которой стоит начинать выбор.' }, { h: 'Турмалин — блеск и меньше пушистости', body: 'Турмалиновое покрытие при нагреве выделяет отрицательные ионы, которые приглаживают чешуйки волоса. Результат — больше блеска и меньше эффекта одуванчика.' }, { h: 'Ионизация — против статики', body: 'Ионизация удерживает влагу внутри волоса и снимает электризацию. Волосы после укладки живее и меньше пушатся, особенно зимой и в сухом климате.' }, { h: 'Что важнее покрытия', body: 'Даже лучший утюжок навредит, если работать на максимуме без термозащиты. Регулировка температуры важнее красивых слов на коробке.' }], tip: 'Всегда наносите термозащиту перед укладкой — это дешевле и полезнее самого дорогого утюжка.' },
+  { slug: 'ployka-diametr-i-temperatura', title: 'Плойка: диаметр и температура под нужный локон', excerpt: 'Какой диаметр даёт голливудскую волну, а какой — мелкие кудри, и почему температура решает всё.', readmin: 4, intro: 'Форма локона зависит от диаметра плойки и температуры. Понимая эту связь, вы легко подберёте прибор под желаемый образ.', sections: [{ h: 'Диаметр под тип локона', body: 'Диаметр 32–38 мм даёт крупные мягкие волны, 19–25 мм — упругий классический локон, 10–16 мм — мелкие кудри. Чем длиннее волосы, тем крупнее диаметр смотрится гармоничнее.' }, { h: 'Температура под тип волос', body: 'Тонким и осветлённым хватает 150–170 °C, нормальным — 170–190 °C, густым — до 200 °C. Не гонитесь за максимумом: держится на средней — выше не нужно.' }, { h: 'Автоматика или классика', body: 'Автоплойки вроде HC02 сами затягивают и закручивают прядь — удобно новичкам. Классическая плойка даёт больше контроля над формой локона.' }, { h: 'Дорога и компактность', body: 'Часто в разъездах — присмотритесь к портативным моделям на USB-C, например WT121. Компактные, без розетки, а локон делают вполне приличный.' }], tip: 'Накрутили локон — не расчёсывайте сразу, дайте прядям остыть пару секунд, и укладка продержится дольше.' },
+  { slug: 'uvlazhnitel-po-ploshhadi', title: 'Увлажнитель воздуха: как подобрать по площади', excerpt: 'Как не купить слишком слабый или шумный увлажнитель — считаем по площади комнаты и объёму бака.', readmin: 5, intro: 'Увлажнитель выбирают под конкретную комнату: важны площадь, объём бака и уровень шума. Ошибка в расчёте — и прибор либо не справляется, либо мешает спать.', sections: [{ h: 'Ориентируйтесь на площадь', body: 'Для спальни или детской 12–18 м² достаточно бака 2,5–3,5 литра. Для гостиной берите производительность повыше. Ультразвуковые модели вроде M202B хорошо закрывают средние комнаты.' }, { h: 'Объём бака = время работы', body: 'Чем больше бак, тем дольше прибор работает без долива. 3,5 литра обычно тянет всю ночь и часть дня. Не хотите доливать дважды в день — берите с запасом.' }, { h: 'Тишина для сна', body: 'Для спальни критичен уровень шума. Тихие модели вроде BM3 работают почти бесшумно. Обращайте внимание на ночной режим с приглушённой подсветкой.' }, { h: 'Уход и вода', body: 'Заливайте чистую, лучше фильтрованную воду, чтобы не оседал белый налёт. Промывайте бак пару раз в неделю — это продлевает жизнь прибора и держит воздух свежим.' }], tip: 'Бак берите с запасом по объёму: доливать воду каждые несколько часов надоедает быстрее, чем кажется в магазине.' },
+  { slug: 'uhod-za-tehnikoy', title: 'Как ухаживать за техникой, чтобы служила годами', excerpt: 'Несколько простых привычек, которые продлевают жизнь стайлеру, плойке и увлажнителю в разы.', readmin: 3, intro: 'Большинство поломок — это не заводской брак, а мелкие ошибки в уходе. Пять минут внимания в неделю экономят деньги на ремонте.', sections: [{ h: 'Берегите шнур', body: 'Самое уязвимое место — шнур у основания. Не наматывайте его туго вокруг горячего корпуса и не выдёргивайте из розетки за провод. Храните со свободно сложенным шнуром.' }, { h: 'Чистите пластины и насадки', body: 'На покрытии остаются стайлинговые средства, которые при нагреве пригорают. Протирайте остывшие пластины мягкой влажной тканью без абразивов, регулярно, а не когда всё залипло.' }, { h: 'Давайте прибору остыть', body: 'Не убирайте горячий утюжок или плойку в сумку сразу после использования. Дайте им полностью остыть на термостойкой поверхности.' }, { h: 'Ухаживайте за увлажнителем', body: 'Регулярно мойте бак и меняйте воду, раз в пару недель очищайте от накипи по инструкции. Чистый увлажнитель работает тише и не разносит бактерии.' }], tip: 'Раз в неделю протирайте прибор и проверяйте шнур — это дешевле любого ремонта.' },
+];
+const GICONS = ['spark', 'medal', 'shield', 'bolt', 'refresh', 'wallet'];
+function renderReviews(sel) {
+  const el = document.querySelector(sel); if (!el) return;
+  const card = r => `<figure class="rev-card"><div class="rev-stars">${'★'.repeat(r.rating)}<span>${'★'.repeat(5 - r.rating)}</span></div><blockquote>«${r.text}»</blockquote><figcaption><b>${r.name}</b><span>${r.city}${r.product ? ' · ' + r.product : ''} · ${r.date}</span></figcaption></figure>`;
+  el.innerHTML = '<div class="rev-track">' + REVIEWS.map(card).join('') + REVIEWS.map(card).join('') + '</div>';
+}
+function renderFAQ(sel) {
+  const el = document.querySelector(sel); if (!el) return;
+  el.innerHTML = FAQ.map(f => `<div class="faq-item"><button class="faq-q" onclick="this.parentNode.classList.toggle('open')"><span>${f.q}</span><i></i></button><div class="faq-a"><p>${f.a}</p></div></div>`).join('');
+}
+function renderGuideCards(sel, limit) {
+  const el = document.querySelector(sel); if (!el) return; const B = window.__BASE__ || '';
+  el.innerHTML = GUIDES.slice(0, limit || GUIDES.length).map((g, i) => `<a class="gcard rv" href="${B}guides.html?g=${g.slug}"><div class="gi">${ICONS[GICONS[i % GICONS.length]]}</div><h3>${g.title}</h3><p>${g.excerpt}</p><div class="gm">${g.readmin} мин · Читать →</div></a>`).join('');
+}
 function initMotion() {
   const hdr = document.getElementById('hdr'), tt = document.getElementById('totop');
   addEventListener('scroll', () => {

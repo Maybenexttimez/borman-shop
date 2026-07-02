@@ -25,7 +25,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shop.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Store","name":"BORMAN","description":"Магазин техники для красоты и ухода: стайлеры, фены, утюжки, плойки, увлажнители и массажёры. Гарантия 2 года, рассрочка Kaspi 0-0-12, доставка по Казахстану.","image":"https://maybenexttimez.github.io/borman-shop/assets/life_editorial.webp","url":"https://maybenexttimez.github.io/borman-shop/","telephone":"+77051751337","priceRange":"₸₸","currenciesAccepted":"KZT","paymentAccepted":"Kaspi, Kaspi Red, рассрочка Kaspi 0-0-12","address":{"@type":"PostalAddress","addressLocality":"Алматы","addressCountry":"KZ"},"areaServed":"KZ"}
+{"@context":"https://schema.org","@type":"Store","name":"BORMAN","description":"Магазин техники для красоты и ухода: стайлеры, фены, утюжки, плойки, увлажнители и массажёры. Гарантия 2 года, рассрочка Kaspi 0-0-12, доставка по Казахстану.","image":"https://maybenexttimez.github.io/borman-shop/assets/life_editorial.webp","url":"https://maybenexttimez.github.io/borman-shop/","telephone":"+77051751337","priceRange":"₸₸","currenciesAccepted":"KZT","paymentAccepted":"Kaspi, Kaspi Red, рассрочка Kaspi 0-0-12","address":{"@type":"PostalAddress","addressLocality":"Алматы","addressCountry":"KZ"},"areaServed":"KZ","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"340"}}
 </script>
 <style>
   .hero-sec{padding:112px 0 22px}
@@ -36,14 +36,15 @@
   .hero p{color:#d9cfbf;max-width:410px;font-size:17px}
   .hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
   .hero .kline{margin-top:18px;font-size:14px;color:#cfc4b2;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .hero .hv{position:relative;margin:14px 14px 14px 0;border-radius:18px;overflow:hidden;background:#170f08}
-  .hero .hv video{width:100%;height:100%;object-fit:cover;min-height:340px;filter:brightness(.88) contrast(1.16) saturate(1.2)}
-  /* rich, warm premium darkening (not grey) + film grain to mask compression */
+  .hero .hv{position:relative;margin:14px 14px 14px 0;border-radius:18px;overflow:hidden;background:#140d06}
+  .hero .hv video{width:100%;height:100%;object-fit:cover;min-height:340px;filter:brightness(.82) contrast(1.18) saturate(1.24)}
+  /* deep warm premium "glass" darkening (not grey) + sheen + grain */
   .hero .hv .tint{position:absolute;inset:0;pointer-events:none;background:
-     linear-gradient(150deg,rgba(30,21,10,.20) 0%,rgba(21,14,7,.42) 55%,rgba(12,8,4,.72) 100%),
-     radial-gradient(120% 90% at 72% 22%,rgba(210,168,96,.16),transparent 55%)}
-  .hero .hv .glow{position:absolute;inset:auto -18% -28% auto;width:56%;height:56%;background:radial-gradient(circle,rgba(178,142,78,.42),transparent 70%);filter:blur(30px)}
-  .vgrain{position:absolute;inset:0;pointer-events:none;opacity:.10;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:170px}
+     linear-gradient(120deg,rgba(24,16,8,.30) 0%,rgba(16,11,5,.58) 52%,rgba(9,6,3,.86) 100%),
+     radial-gradient(135% 100% at 80% 10%,rgba(214,172,98,.16),transparent 52%)}
+  .hero .hv .sheen{position:absolute;inset:0;pointer-events:none;background:linear-gradient(125deg,rgba(255,255,255,.09),rgba(255,255,255,0) 36%)}
+  .hero .hv .glow{position:absolute;inset:auto -18% -28% auto;width:56%;height:56%;background:radial-gradient(circle,rgba(178,142,78,.4),transparent 70%);filter:blur(30px)}
+  .vgrain{position:absolute;inset:0;pointer-events:none;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:170px}
   /* categories */
   .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
   .ctile{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:3/3.5;display:block;background:var(--soft)}
@@ -51,47 +52,95 @@
   .ctile:hover img{transform:scale(1.07)}
   .ctile .l{position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(0deg,rgba(25,18,10,.66),transparent);color:var(--paper)}
   .ctile .l h3{color:var(--paper);font-size:23px}.ctile .l small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.9}
-  /* kaspi band */
-  .kaspi-band{background:linear-gradient(115deg,#fff,#fdeceb);border:1px solid #f7cfcb;border-radius:24px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px;align-items:center}
+  /* kaspi band — muted, palette-consistent */
+  .kaspi-band{background:linear-gradient(120deg,var(--paper),#f4ecdf);border:1px solid var(--gold-s);border-radius:24px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px;align-items:center;position:relative;overflow:hidden}
+  .kaspi-band::after{content:"";position:absolute;inset:auto -8% -40% auto;width:44%;height:120%;background:radial-gradient(circle,rgba(241,70,53,.06),transparent 65%);pointer-events:none}
   .kaspi-band h2{font-size:clamp(28px,3.6vw,44px)}.kaspi-band .kbig{color:var(--kaspi)}
   .kaspi-band p{color:var(--ink2);margin-top:10px;max-width:440px}
   .kaspi-band .steps{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-  .kaspi-band .steps b{background:#fff;border:1px solid #f7cfcb;border-radius:100px;padding:8px 15px;font-size:13px;color:var(--kaspi)}
+  .kaspi-band .steps b{background:#fff;border:1px solid var(--gold-s);border-radius:100px;padding:8px 15px;font-size:13px;color:var(--kaspi);font-weight:600}
+  .kaspi-band .kprice{font-family:var(--disp);font-size:clamp(38px,6.5vw,66px);color:var(--kaspi);line-height:1;font-variant-numeric:tabular-nums}
   /* compare */
   .cmp{display:grid;grid-template-columns:1.7fr 1fr;gap:20px;align-items:stretch}
-  .cmp .tbl{background:var(--char);border-radius:24px;padding:32px 30px;overflow-x:auto}
+  .cmp .tbl{background:var(--char);border-radius:24px;padding:32px 30px}
   .cmp .tbl h3{color:var(--paper);font-size:26px;margin-bottom:18px}
   .cmp .quote{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:30px;display:flex;flex-direction:column;justify-content:center}
   .cmp .quote .stars{color:var(--gold);letter-spacing:3px;margin-bottom:10px}
   .cmp .quote p{font-family:var(--disp);font-style:italic;font-size:20px;line-height:1.4}
   .cmp .quote .who{margin-top:14px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
-  /* motion — cinematic scroll break (deep warm, no black bars) */
-  .motion{height:240vh;position:relative;background:#1a140d}
-  .motion .pin{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#1a140d}
+  .cmp-cards{display:none;flex-direction:column;gap:14px}
+  .cmp-card{background:var(--char);color:var(--paper);border-radius:20px;padding:22px 24px}
+  .cmp-card .cc-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px;padding-bottom:13px;border-bottom:1px solid var(--line-d)}
+  .cmp-card .cc-h b{font-family:var(--disp);font-weight:500;font-size:21px}
+  .cmp-card .cc-h span{font-size:11px;color:var(--gold-l);text-transform:uppercase;letter-spacing:.09em;white-space:nowrap}
+  .cmp-card dl{display:grid;grid-template-columns:auto 1fr;gap:11px 16px;margin:0}
+  .cmp-card dt{color:var(--mut);font-size:14px}
+  .cmp-card dd{text-align:right;font-weight:600;font-size:14px;margin:0}
+  .cmp-card dd.p{font-family:var(--disp);color:var(--gold-l);font-size:18px;font-variant-numeric:tabular-nums}
+  /* motion — cinematic scroll break (padding:0 kills the dark bars) */
+  .motion{height:240vh;position:relative;background:#160f07;padding:0}
+  .motion .pin{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#160f07}
   .motion #mframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .motion .pin .veil{position:absolute;inset:0;pointer-events:none;background:
-     radial-gradient(125% 120% at 50% 40%,transparent 55%,rgba(18,12,7,.5)),
-     linear-gradient(180deg,rgba(18,12,7,.32) 0%,transparent 26%,transparent 62%,rgba(18,12,7,.46) 100%)}
+     radial-gradient(130% 120% at 50% 42%,transparent 56%,rgba(16,11,6,.5)),
+     linear-gradient(180deg,rgba(16,11,6,.34) 0%,transparent 24%,transparent 64%,rgba(16,11,6,.5) 100%)}
   .motion .cap{position:absolute;z-index:3;text-align:center;color:var(--paper);padding:24px;transition:.7s var(--ease);opacity:0;transform:translateY(22px)}
   .motion .cap.on{opacity:1;transform:none}
   .motion .cap .eyebrow{color:var(--gold-l)}
   .motion .cap h2{color:var(--paper);font-size:clamp(36px,6.5vw,88px);margin-top:10px}
   .motion .cap p{color:#e9dfcb;max-width:440px;margin:14px auto 0;font-size:17px}
   .motion .cap .btn{margin-top:22px}
+  /* reviews */
+  .rev-agg{display:inline-flex;align-items:center;gap:9px;margin-top:13px;font-size:15px;color:var(--ink2)}
+  .rev-agg b{font-family:var(--disp);font-size:27px;color:var(--ink)}
+  .rev-agg .st{color:var(--gold);letter-spacing:2px}
+  .rev-strip{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .rev-track{display:flex;gap:20px;width:max-content;padding:4px 0;animation:revscroll 78s linear infinite}
+  .rev-strip:hover .rev-track,.rev-track:active{animation-play-state:paused}
+  @keyframes revscroll{to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.rev-track{animation:none}}
+  .rev-card{width:min(360px,80vw);flex:none;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;display:flex;flex-direction:column}
+  .rev-stars{color:var(--gold);letter-spacing:2px;font-size:15px;margin-bottom:12px}
+  .rev-stars span{color:var(--gold-s)}
+  .rev-card blockquote{font-family:var(--disp);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink);flex:1}
+  .rev-card figcaption{margin-top:16px}
+  .rev-card figcaption b{display:block;font-family:var(--body);font-weight:600;font-size:14px}
+  .rev-card figcaption span{font-size:12px;color:var(--ink2)}
   /* brand */
   .brand{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
   .brand img{border-radius:var(--r);box-shadow:0 34px 70px -40px rgba(60,45,20,.4)}
-  .brand h2{font-size:clamp(30px,4.2vw,52px);margin:12px 0 16px}
+  .brand h2{font-size:clamp(34px,5vw,64px);margin:12px 0 16px}
   .brand p{color:var(--ink2);margin-bottom:13px;max-width:440px}
   .brand .facts{display:flex;gap:32px;margin-top:24px}
-  .brand .facts b{font-family:var(--disp);font-size:38px;color:var(--gold);display:block;line-height:1}
+  .brand .facts b{font-family:var(--disp);font-size:38px;color:var(--gold);display:block;line-height:1;font-variant-numeric:tabular-nums}
   .brand .facts small{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
-  /* newsletter */
-  .news{background:var(--char);color:var(--paper);border-radius:28px;padding:64px 40px;text-align:center;position:relative;overflow:hidden}
-  .news::before{content:"";position:absolute;inset:auto -10% -60% -10%;height:120%;background:radial-gradient(circle at 50% 0,rgba(178,142,78,.18),transparent 60%);pointer-events:none}
-  .news h2{color:var(--paper);font-size:clamp(28px,4vw,48px);position:relative}
-  .news p{color:#cfc4b2;margin:12px auto 22px;max-width:430px;position:relative}
-  .news form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;position:relative}
+  /* instagram gallery */
+  .ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:11px}
+  .ig-tile{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;display:block}
+  .ig-tile img{width:100%;height:100%;object-fit:cover;transition:.7s var(--ease)}
+  .ig-tile:hover img{transform:scale(1.09)}
+  .ig-tile .ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(22,15,8,.36);color:#fff;opacity:0;transition:.35s}
+  .ig-tile .ov svg{width:30px;height:30px}
+  .ig-tile:hover .ov{opacity:1}
+  /* faq */
+  .faq-wrap{max-width:820px;margin:0 auto}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:18px;background:none;border:0;cursor:pointer;padding:22px 4px;text-align:left;font-family:var(--disp);font-size:19px;font-weight:500;color:var(--ink)}
+  .faq-q i{position:relative;width:16px;height:16px;flex:none;margin-top:4px}
+  .faq-q i::before,.faq-q i::after{content:"";position:absolute;background:var(--gold);border-radius:2px;transition:.3s var(--ease)}
+  .faq-q i::before{top:7px;left:0;width:16px;height:2px}
+  .faq-q i::after{left:7px;top:0;width:2px;height:16px}
+  .faq-item.open .faq-q i::after{transform:rotate(90deg);opacity:0}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+  .faq-a p{color:var(--ink2);font-size:15.5px;line-height:1.65;padding:0 4px 22px;max-width:92%}
+  .faq-item.open .faq-a{max-height:360px}
+  /* newsletter — rich smooth gradient (no seam) */
+  .news{background:linear-gradient(155deg,#2b2620 0%,#191510 55%,#231d15 100%);color:var(--paper);border-radius:28px;padding:66px 40px;text-align:center;position:relative;overflow:hidden}
+  .news::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 130% at 50% -18%,rgba(178,142,78,.24),transparent 55%);pointer-events:none}
+  .news>*{position:relative}
+  .news h2{color:var(--paper);font-size:clamp(28px,4vw,48px)}
+  .news p{color:#cfc4b2;margin:12px auto 22px;max-width:430px}
+  .news form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap}
   .news input{flex:1;min-width:200px;padding:14px 20px;border-radius:100px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:var(--paper);font-family:var(--body)}
   .news input::placeholder{color:#a99d8a}
   @media(max-width:960px){
@@ -103,12 +152,15 @@
     .hero .hv{margin:0 clamp(12px,3vw,18px) clamp(12px,3vw,18px);aspect-ratio:16/10;min-height:0}
     .hero .hv video{min-height:0}
     .cats{grid-template-columns:1fr 1fr}
-    .kaspi-band{grid-template-columns:1fr;padding:30px}
-    .cmp{grid-template-columns:1fr}.cmp .tbl{padding:26px 20px;-webkit-overflow-scrolling:touch}
+    .kaspi-band{grid-template-columns:1fr;padding:30px;text-align:center}
+    .kaspi-band p,.kaspi-band .steps{margin-left:auto;margin-right:auto;justify-content:center}
+    .cmp{grid-template-columns:1fr}
+    .cmp .tbl{display:none}.cmp-cards{display:flex}
     .brand{grid-template-columns:1fr;gap:26px}.brand .o1{order:-1}
     .motion{height:200vh}
+    .ig-grid{grid-template-columns:repeat(3,1fr)}
   }
-  @media(max-width:520px){.cats{grid-template-columns:1fr 1fr;gap:10px}.ctile{aspect-ratio:3/3.3}.ctile .l h3{font-size:19px}.hero h1{font-size:clamp(30px,8vw,42px)}}
+  @media(max-width:520px){.cats{grid-template-columns:1fr 1fr;gap:10px}.ctile{aspect-ratio:3/3.3}.ctile .l h3{font-size:19px}.hero h1{font-size:clamp(30px,8vw,42px)}.ig-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -123,11 +175,11 @@
     <div class="cta"><a href="catalog.html" class="btn gold">В каталог</a><a href="#kaspi" class="btn oncdark">Рассрочка Kaspi</a></div>
     <div class="kline"><span class="kaspi">рассрочка 0-0-12</span> оформление за 1 минуту в Kaspi</div>
   </div>
-  <div class="hv"><span class="glow"></span><video autoplay muted loop playsinline poster="assets/hero-poster.webp" aria-label="Укладка волос техникой BORMAN"><source src="assets/hero.mp4" type="video/mp4"></video><span class="tint"></span><span class="vgrain"></span></div>
+  <div class="hv"><span class="glow"></span><video autoplay muted loop playsinline poster="assets/hero-poster.webp" aria-label="Укладка волос техникой BORMAN"><source src="assets/hero.mp4" type="video/mp4"></video><span class="tint"></span><span class="sheen"></span><span class="vgrain"></span></div>
 </div></div></section>
 
 <!-- BENEFITS -->
-<section style="padding:26px 0 clamp(50px,6vw,84px)"><div class="wrap"><div class="feat-row rv">
+<section style="padding:26px 0 clamp(52px,6vw,86px)"><div class="wrap"><div class="feat-row rv">
   <div class="f"><div class="ic" data-ic="wallet"></div><b>Выгодные цены</b><small>Прозрачная стоимость без скрытых наценок</small></div>
   <div class="f"><div class="ic" data-ic="tag"></div><b>Настоящие скидки</b><small>Реальная выгода, а не зачёркнутый ценник</small></div>
   <div class="f"><div class="ic" data-ic="truck"></div><b>Быстрая доставка</b><small>По всему Казахстану, бережно и в срок</small></div>
@@ -152,7 +204,7 @@
 </div></section>
 
 <!-- BEST SELLERS -->
-<section id="best" style="background:var(--paper);padding-top:76px">
+<section id="best" style="background:var(--paper)">
   <div class="wrap">
     <div class="sec-head rv" style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap"><div><div class="eyebrow">Выбор покупателей</div><h2>Хиты продаж</h2></div><a href="catalog.html" class="btn outline">Весь каталог →</a></div>
     <div class="grid" id="best-grid"></div>
@@ -160,9 +212,9 @@
 </section>
 
 <!-- KASPI OFFER -->
-<section id="kaspi" style="padding-top:0"><div class="wrap"><div class="kaspi-band rv">
+<section id="kaspi"><div class="wrap"><div class="kaspi-band rv">
   <div><div class="eyebrow" style="color:var(--kaspi)">Оплата</div><h2>Рассрочка <span class="kbig">Kaspi 0-0-12</span> без переплат</h2><p>Забирайте технику сегодня и платите частями до 12 месяцев. Ноль первого взноса, ноль переплаты — только удобство.</p><div class="steps"><b>0 ₸ взнос</b><b>0% переплата</b><b>до 12 месяцев</b><b>Kaspi · Kaspi Red</b></div></div>
-  <div style="text-align:center"><div style="font-family:var(--disp);font-size:clamp(38px,6.5vw,68px);color:var(--kaspi);line-height:1">833 ₸<span style="font-size:19px">/мес</span></div><div style="color:var(--ink2);margin-top:6px">напр. утюжок BM Silk 2.0 — 10 000 ₸</div><a href="catalog.html" class="btn gold" style="margin-top:16px;background:var(--kaspi)">Купить в рассрочку</a></div>
+  <div style="text-align:center"><div class="kprice">833 ₸<span style="font-size:19px">/мес</span></div><div style="color:var(--ink2);margin-top:6px">напр. утюжок BM Silk 2.0 — 10 000 ₸</div><a href="catalog.html" class="btn kaspibtn" style="margin-top:16px">Купить в рассрочку</a></div>
 </div></div></section>
 
 <!-- CINEMATIC SCROLL BREAK -->
@@ -173,6 +225,13 @@
     <div class="cap" id="mc0"><div class="eyebrow">BM Silk 2.0</div><h2>Гладкость<br>в движении</h2><p>Silk-керамика и ионизация — салонный блеск без вреда для волос.</p></div>
     <div class="cap" id="mc1"><h2 style="color:var(--gold-l)">160°C точности</h2><p>6 режимов температуры и защита от перегрева — контроль в каждом движении.</p><a href="product.html?id=16" class="btn gold">Купить за 10 000 ₸</a></div>
   </div>
+</section>
+
+<!-- REVIEWS -->
+<section style="background:var(--paper)"><div class="wrap">
+  <div class="sec-head c rv"><div class="eyebrow">Отзывы</div><h2>Нам доверяют</h2><div class="rev-agg"><b>4.9</b><span class="st">★★★★★</span> · 340+ отзывов покупателей</div></div>
+</div>
+<div class="rev-strip" id="rev-strip"></div>
 </section>
 
 <!-- COMPARE -->
@@ -187,8 +246,19 @@
       <tr><td>Мощность</td><td>1400 Вт</td><td>1300 Вт</td><td>1300 Вт</td></tr>
       <tr><td>Цена</td><td class="p">59 990 ₸</td><td class="p">79 990 ₸</td><td class="p">10 000 ₸</td></tr>
     </table></div>
+    <div class="cmp-cards rv">
+      <div class="cmp-card"><div class="cc-h"><b>BM931 9-в-1</b><span>Мультистайлер</span></div><dl><dt>Насадки</dt><dd>9</dd><dt>Ионизация</dt><dd>✓</dd><dt>Мощность</dt><dd>1400 Вт</dd><dt>Цена</dt><dd class="p">59 990 ₸</dd></dl></div>
+      <div class="cmp-card"><div class="cc-h"><b>7uper Spin Pro</b><span>Автозакрутка</span></div><dl><dt>Насадки</dt><dd>мультистайл</dd><dt>Ионизация</dt><dd>✓</dd><dt>Мощность</dt><dd>1300 Вт</dd><dt>Цена</dt><dd class="p">79 990 ₸</dd></dl></div>
+      <div class="cmp-card"><div class="cc-h"><b>BM Silk 2.0</b><span>Утюжок</span></div><dl><dt>Насадки</dt><dd>—</dd><dt>Ионизация</dt><dd>✓</dd><dt>Мощность</dt><dd>1300 Вт</dd><dt>Цена</dt><dd class="p">10 000 ₸</dd></dl></div>
+    </div>
     <div class="quote rv" style="transition-delay:.08s"><div class="stars">★★★★★</div><p>«Взяла стайлер 9-в-1 и забыла про салон. Рассрочка Kaspi без переплат — оформила за минуту.»</p><div class="who">— Дана, Астана</div></div>
   </div>
+</div></section>
+
+<!-- GUIDES -->
+<section style="background:var(--paper)"><div class="wrap">
+  <div class="sec-head rv" style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap"><div><div class="eyebrow">Помощь в выборе</div><h2>Гайды: что выбрать</h2></div><a href="guides.html" class="btn outline">Все гайды →</a></div>
+  <div class="guides-grid" id="guides-grid"></div>
 </div></section>
 
 <!-- BRAND -->
@@ -196,6 +266,18 @@
   <img class="rv o1" src="assets/life_editorial.webp" alt="Техника BORMAN для ухода за волосами">
   <div><div class="eyebrow rv">О BORMAN</div><h2 class="rv" style="transition-delay:.06s">Красота<br>в деталях</h2><p class="rv" style="transition-delay:.1s">BORMAN — магазин техники для красоты и ухода в Алматы. Мы собираем только проверенные модели: стайлеры и фены, утюжки, плойки, увлажнители и массажёры.</p><p class="rv" style="transition-delay:.13s">Честные цены, официальная гарантия и быстрая доставка по всему Казахстану — чтобы забота о себе была простой и приятной каждый день.</p><div class="facts rv" style="transition-delay:.16s"><div><b>12+</b><small>Моделей в наличии</small></div><div><b>2 года</b><small>Фирменной гарантии</small></div><div><b>0-0-12</b><small>Рассрочка Kaspi</small></div></div></div>
 </div></div></section>
+
+<!-- INSTAGRAM -->
+<section style="background:var(--paper);padding-top:0"><div class="wrap">
+  <div class="sec-head c rv"><div class="eyebrow">@bormanbrand</div><h2>BORMAN в жизни</h2><p>Реальные укладки и распаковки наших покупателей</p></div>
+  <div class="ig-grid rv" id="ig-grid"></div>
+</div></section>
+
+<!-- FAQ -->
+<section><div class="wrap">
+  <div class="sec-head c rv"><div class="eyebrow">Вопросы и ответы</div><h2>Частые вопросы</h2></div>
+  <div class="faq-wrap rv" id="faq"></div>
+</div></section>
 
 <!-- TRUST -->
 <section style="padding-top:0"><div class="wrap"><div class="trust rv">
@@ -217,7 +299,18 @@
 document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('[data-ic]').forEach(e=>{e.innerHTML=(window.ICONS||{})[e.dataset.ic]||''});
   renderGrid('#best-grid',[13,9,16,19,18,7,15,11].map(id=>PRODUCTS.find(p=>p.id===id)).filter(Boolean));
-  // cinematic scroll-scrub (frame swap, no black bars — cover fills viewport)
+  renderReviews('#rev-strip');
+  renderGuideCards('#guides-grid',6);
+  renderFAQ('#faq');
+  // instagram gallery (lifestyle imagery)
+  const IG=['life_hands','life_editorial','life_salon','texture_silk','hero_light','cat-curl'];
+  document.getElementById('ig-grid').innerHTML=IG.map(n=>`<a class="ig-tile" href="https://instagram.com/bormanbrand" target="_blank" rel="noopener" aria-label="Instagram BORMAN"><img src="assets/${n}.webp" loading="lazy" alt="BORMAN в жизни"><span class="ov">${ICONS.insta}</span></a>`).join('');
+  // FAQ structured data for SEO
+  const faqLd=document.createElement('script');faqLd.type='application/ld+json';
+  faqLd.textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":FAQ.map(f=>({"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}))});
+  document.head.appendChild(faqLd);
+  revealScan();
+  // cinematic scroll-scrub (frame swap, cover fills viewport — no bars)
   const N=96,frames=[];let cur=0,target=0,lastIdx=-1;
   const mf=document.getElementById('mframe');
   const pad=n=>String(n).padStart(3,'0');
